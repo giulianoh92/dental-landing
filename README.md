@@ -90,21 +90,20 @@ server {
 
 ## Replacing the placeholder assets
 
-The screenshots in `assets/` are copies of the ones shipped in `dental_clinic/static/description/`. Replace them with higher-fidelity captures when ready. **Keep the filenames** so the HTML does not need to be updated:
+The screenshots in `assets/` are copies of the ones shipped in `gh_dental_clinic/static/description/`. Replace them with higher-fidelity captures when ready. **Keep the filenames** so the HTML does not need to be updated:
 
 | File | Current source | Recommended replacement |
 |---|---|---|
-| `assets/icon.png` | `dental_clinic/static/description/icon.png` | Same (already final) |
+| `assets/icon.png` | `gh_dental_clinic/static/description/icon.png` | Same (already final) |
 | `assets/og-image.png` | Copy of `icon.png` | Custom 1200x630 OG image with product name + visual |
 | `assets/screenshot-1.png` | `01_consultation_form.png` | Higher-res hero capture |
 | `assets/screenshot-2.png` | `02_patient_odontogram.png` | Higher-res odontogram capture |
-| `assets/screenshot-3.png` | `03_appointment_list.png` | Capture of `dental_clinic_account` (e.g. invoice wizard) |
+| `assets/screenshot-3.png` | `03_appointment_list.png` | Capture of `gh_dental_clinic_account` (e.g. invoice wizard) |
 
 ## Pending content placeholders
 
 - `#docs` links currently point at the GitHub repo URL. Update to the published docs site when available.
 - The `Privacy policy` footer link is a placeholder (`#`). Replace once the legal page is live.
-- The `Get on Odoo Apps Store` CTA jumps to `#pricing` until the Apps Store listing URL is known. Replace with the real listing URL once published.
 
 ## License
 
