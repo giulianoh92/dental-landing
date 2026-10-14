@@ -10,13 +10,13 @@
     <meta name="theme-color" content="#0d7377">
 
     <meta property="og:title" content="DentalOdoo &mdash; Dental Practice Management for Odoo 19">
-    <meta property="og:description" content="Complete dental clinic management with POMR, SOAP notes, interactive odontogram, periodontal chart and more.">
+    <meta property="og:description" content="Complete dental clinic management with POMR, SOAP notes, interactive odontogram, treatment plans, patient portal and more.">
     <meta property="og:image" content="https://dental.giulianoh.dev/assets/og-image.png">
     <meta property="og:url" content="https://dental.giulianoh.dev">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DentalOdoo &mdash; Dental Practice Management for Odoo 19">
-    <meta name="twitter:description" content="Complete dental clinic management with POMR, SOAP notes, interactive odontogram, periodontal chart and more.">
+    <meta name="twitter:description" content="Complete dental clinic management with POMR, SOAP notes, interactive odontogram, treatment plans, patient portal and more.">
     <meta name="twitter:image" content="https://dental.giulianoh.dev/assets/og-image.png">
 
     <link rel="icon" type="image/png" href="assets/icon.png">
@@ -94,7 +94,7 @@
                     Dental Practice Management for <span class="text-brand-600">Odoo 19</span>
                 </h1>
                 <p class="mt-6 text-lg text-slate-600 max-w-xl leading-relaxed">
-                    The bridge between clinic and back-office. POMR-compliant clinical records, SOAP consultations, periodontal charting and an interactive OWL odontogram &mdash; 100% native Odoo.
+                    The bridge between clinic and back-office. POMR-compliant clinical records, SOAP consultations, treatment plans and an interactive OWL odontogram &mdash; built on standard Odoo apps.
                 </p>
                 <div class="mt-8 flex flex-col sm:flex-row gap-3">
                     <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-brand-600 text-white font-semibold hover:bg-brand-700 transition shadow-md">
@@ -158,10 +158,10 @@
             <!-- Feature 4 -->
             <div class="bg-white p-6 rounded-xl border border-slate-200 hover:border-brand-300 hover:shadow-lg transition">
                 <div class="w-11 h-11 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
-                <h3 class="mt-4 text-lg font-semibold text-slate-900">Periodontal chart</h3>
-                <p class="mt-2 text-sm text-slate-600 leading-relaxed">Probing depths, attachment levels, bleeding and mobility &mdash; all in a custom OWL perio component.</p>
+                <h3 class="mt-4 text-lg font-semibold text-slate-900">Front desk queue &amp; waiting room</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">Check patients in, call them from the day's queue and show the turn on a public waiting room screen.</p>
             </div>
 
             <!-- Feature 5 -->
@@ -205,7 +205,7 @@
                 <div class="w-11 h-11 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center">
                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <h3 class="mt-4 text-lg font-semibold text-slate-900">100% native Odoo</h3>
+                <h3 class="mt-4 text-lg font-semibold text-slate-900">Built on standard Odoo</h3>
                 <p class="mt-2 text-sm text-slate-600 leading-relaxed">Built on standard Odoo apps: ORM, OWL components and the mail engine. Optional SMS reminders use Odoo's paid SMS service.</p>
             </div>
         </div>
@@ -251,12 +251,9 @@
                 </div>
                 <figcaption class="px-4 py-3 bg-white text-sm text-slate-700 font-medium border-t border-slate-200">Consent form with digital signature</figcaption>
             </figure>
-            <figure class="rounded-xl overflow-hidden border border-2 border-dashed border-slate-200 shadow-sm bg-slate-50 flex flex-col">
-                <div class="flex-1 aspect-[16/10] flex flex-col items-center justify-center gap-3 text-slate-400 p-6 text-center">
-                    <svg class="w-10 h-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
-                    <span class="text-[11px] font-bold tracking-widest uppercase text-slate-500">Coming soon</span>
-                </div>
-                <figcaption class="px-4 py-3 bg-white text-sm text-slate-700 font-medium border-t border-slate-200">Periodontal chart (post-launch feature)</figcaption>
+            <figure class="rounded-xl overflow-hidden border border-slate-200 shadow-md bg-white">
+                <img src="assets/08_waiting_room_tv.png" alt="Waiting room screen" class="w-full h-auto">
+                <figcaption class="px-4 py-3 bg-slate-50 text-sm text-slate-700 font-medium border-t border-slate-200">Public waiting room screen with called patients</figcaption>
             </figure>
             <figure class="rounded-xl overflow-hidden border border-slate-200 shadow-md bg-white">
                 <img src="assets/13_invoice_wizard.png" alt="Invoice wizard from a treatment plan" class="w-full h-auto">
@@ -289,7 +286,7 @@
 
                 <ul class="mt-6 space-y-3 text-sm text-slate-700">
                     <li class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>SOAP consultations &amp; POMR records</li>
-                    <li class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>FDI odontogram &amp; periodontal chart</li>
+                    <li class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>FDI odontogram with tooth history</li>
                     <li class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Treatment plans, prescriptions, consents</li>
                     <li class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Appointments, recalls, waiting room display</li>
                     <li class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Patient portal with online booking</li>
