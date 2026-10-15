@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odontograma en Odoo 19: notación FDI, estados e historial</title>
+    <meta name="description" content="Cómo funciona el odontograma de DentalOdoo en Odoo 19: notación FDI, 13 estados, condiciones por superficie, historial, dentición mixta y portal.">
+    <meta name="author" content="Giuliano Hillebrand">
+    <meta name="theme-color" content="#0d7377">
+    <link rel="canonical" href="https://dental.giulianoh.dev/es/articulos/odontograma-odoo/">
+    <meta property="og:title" content="Odontograma en Odoo 19: notación FDI, estados e historial">
+    <meta property="og:description" content="Cómo funciona el odontograma de DentalOdoo en Odoo 19: notación FDI, 13 estados, condiciones por superficie, historial, dentición mixta y portal.">
+    <meta property="og:image" content="https://dental.giulianoh.dev/assets/og-image.png">
+    <meta property="og:url" content="https://dental.giulianoh.dev/es/articulos/odontograma-odoo/">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Odontograma en Odoo 19: notación FDI, estados e historial">
+    <meta name="twitter:description" content="Cómo funciona el odontograma de DentalOdoo en Odoo 19: notación FDI, 13 estados, condiciones por superficie, historial, dentición mixta y portal.">
+    <meta name="twitter:image" content="https://dental.giulianoh.dev/assets/og-image.png">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odontograma en Odoo 19: notación FDI, estados e historial",
+  "description": "Cómo funciona el odontograma de DentalOdoo en Odoo 19: notación FDI, 13 estados, condiciones por superficie, historial, dentición mixta y portal.",
+  "inLanguage": "es",
+  "datePublished": "2026-10-15",
+  "dateModified": "2026-10-15",
+  "mainEntityOfPage": "https://dental.giulianoh.dev/es/articulos/odontograma-odoo/",
+  "image": "https://dental.giulianoh.dev/assets/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://dental.giulianoh.dev/es/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Artículos",
+      "item": "https://dental.giulianoh.dev/es/articulos/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Odontograma en Odoo 19: cómo funciona en DentalOdoo",
+      "item": "https://dental.giulianoh.dev/es/articulos/odontograma-odoo/"
+    }
+  ]
+}
+    </script>
+
+    <link rel="icon" type="image/png" href="/assets/icon.png">
+    <link rel="apple-touch-icon" href="/assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#eef9f9',
+                            100: '#d2eced',
+                            200: '#a6d8db',
+                            300: '#74bec3',
+                            400: '#3fa3aa',
+                            500: '#14919b',
+                            600: '#0d7377',
+                            700: '#0a5b5e',
+                            800: '#08484b',
+                            900: '#053638',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+        <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+        .art h2 { font-size: 1.5rem; line-height: 2rem; font-weight: 700; color: #0f172a; margin-top: 2.5rem; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+        .art p { margin-top: 1rem; line-height: 1.75; color: #334155; }
+        .art ul, .art ol { margin-top: 1rem; padding-left: 1.5rem; color: #334155; line-height: 1.75; }
+        .art ul { list-style: disc; } .art ol { list-style: decimal; }
+        .art li { margin-top: 0.35rem; }
+        .art a { color: #0d7377; text-decoration: underline; }
+        .art code { font-size: 0.875em; background: #f1f5f9; padding: 0 0.25rem; border-radius: 0.25rem; }
+        .art figure { margin-top: 2rem; }
+        .art figcaption { margin-top: 0.5rem; font-size: 0.875rem; color: #64748b; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="/es/" class="flex items-center gap-3">
+            <img src="/assets/icon.png" alt="Logotipo de DentalOdoo" class="w-9 h-9 rounded-lg shadow-sm">
+            <span class="font-bold text-lg text-slate-900">DentalOdoo</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+            <a href="/es/#features" class="hover:text-brand-600 transition">Funciones</a>
+            <a href="/es/#pricing" class="hover:text-brand-600 transition">Precios</a>
+            <a href="/es/articulos/" class="hover:text-brand-600 transition">Artículos</a>
+            <a href="https://dental-demo.giulianoh.dev/demo" target="_blank" rel="noopener" class="hover:text-brand-600 transition">Demo en vivo</a>
+            <a href="/es/#contact" class="hover:text-brand-600 transition">Contacto</a>
+        </nav>
+        <a href="/es/#pricing" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700 transition shadow-sm">Comenzar</a>
+    </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <nav aria-label="Ruta de navegación" class="text-sm text-slate-500"><a href="/es/" class="hover:text-brand-600">Inicio</a> <span aria-hidden="true">/</span> <a href="/es/articulos/" class="hover:text-brand-600">Artículos</a> <span aria-hidden="true">/</span> <span class="text-slate-700">Odontograma en Odoo 19: cómo funciona en DentalOdoo</span></nav>
+    <article class="art">
+        <h1 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">Odontograma en Odoo 19: cómo funciona en DentalOdoo</h1>
+
+        <p class="!text-lg">El odontograma es el mapa dental del paciente: qué piezas están sanas, cuáles tienen caries o restauraciones y qué se planificó para cada una. En <strong>DentalOdoo</strong> es un componente interactivo desarrollado con OWL, el framework de Odoo 19, que se usa dentro de la consulta y también en la ficha del paciente. Este artículo describe lo que hace hoy el módulo, sin adornos.</p>
+
+        <figure>
+            <img src="/assets/screenshot-2.png" alt="Odontograma FDI interactivo de DentalOdoo con piezas coloreadas por estado, modo de selección activo con dos piezas elegidas y leyenda de estados; interfaz en inglés" loading="lazy" class="w-full h-auto rounded-xl border border-slate-200 shadow-md">
+            <figcaption>El odontograma con el modo de selección activo y la leyenda de estados al pie (interfaz en inglés).</figcaption>
+        </figure>
+
+        <h2>Notación FDI</h2>
+        <p>Las piezas se identifican con la notación FDI de dos dígitos: el primero indica el cuadrante y el segundo la posición, del incisivo central al tercer molar.</p>
+        <ul>
+            <li><strong>Dentición permanente (32 piezas):</strong> cuadrantes 1 a 4, piezas 11 a 18, 21 a 28, 31 a 38 y 41 a 48.</li>
+            <li><strong>Dentición decidua (20 piezas):</strong> cuadrantes 5 a 8, piezas 51 a 55, 61 a 65, 71 a 75 y 81 a 85. Se muestran cuando se activa la odontopediatría en los ajustes de la clínica.</li>
+        </ul>
+
+        <h2>Estados de cada pieza</h2>
+        <p>Cada pieza tiene un estado y cada estado tiene su propio color, que se explica en una leyenda debajo del gráfico. Los estados disponibles son:</p>
+        <p>sana, con caries, obturada, ausente, con endodoncia, con corona, con implante, en tratamiento, sin erupcionar, exfoliada, desgastada, fracturada y con prótesis. Son 13 estados en total.</p>
+
+        <h2>Condiciones por superficie</h2>
+        <p>Además del estado de la pieza, se pueden registrar condiciones en cada una de sus cinco superficies: mesial, distal, vestibular, lingual o palatina, y oclusal o incisal. Las condiciones disponibles son siete: sana, caries, restauración, fractura, desgaste, sellante y erosión. Se cargan desde la pestaña de condiciones de superficie en el formulario de la pieza, y sirven para ubicar con precisión una patología o una restauración. Los procedimientos de una consulta o de un plan de tratamiento también admiten pieza y superficie.</p>
+
+        <h2>Cómo se edita</h2>
+        <ol>
+            <li>Haga clic en una pieza del odontograma para abrir su ventana emergente.</li>
+            <li>Cambie el estado. Antes de aplicar el cambio se guarda la consulta, de modo que el texto SOAP ya escrito no se pierde.</li>
+            <li>Si lo necesita, abra el formulario de la pieza para agregar notas. Las notas de la pieza son internas y nunca se muestran al paciente en el portal.</li>
+        </ol>
+        <p>Para trabajar sobre varias piezas a la vez existe un modo de selección. Permite elegir piezas una por una o con atajos (todas, todos los molares, premolares, incisivos o caninos, arcada superior o inferior) y aplicar una acción sobre todas: cambiar el estado, informar un problema o agregar un procedimiento.</p>
+
+        <h2>Insignias de hallazgos pendientes</h2>
+        <p>Junto a cada pieza aparecen pequeñas insignias que resumen lo pendiente: una marca roja para los problemas abiertos vinculados a la pieza, una «P» azul para los procedimientos planificados y una marca verde para los procedimientos completados cuya consulta todavía no se firmó. La leyenda del gráfico explica cada una.</p>
+
+        <h2>Historial de cambios</h2>
+        <p>Todo cambio de estado se registra automáticamente en el historial de la pieza: estado anterior, estado nuevo, fecha y hora, usuario que lo hizo y, cuando corresponde, la consulta en la que ocurrió. El historial es de solo lectura, de manera que se conserva la evolución de cada pieza a lo largo del tiempo.</p>
+
+        <h2>Dentición mixta y transición pediátrica</h2>
+        <p>Con la odontopediatría activada, el módulo ayuda a acompañar el recambio dentario: iniciar la dentición mixta crea las 32 piezas permanentes como «sin erupcionar» y las vincula con sus predecesoras deciduas; marcar una pieza decidua como exfoliada activa a su sucesora; y completar la dentición adulta marca como exfoliadas las deciduas restantes y pasa las permanentes a «sana».</p>
+
+        <h2>El paciente también lo ve</h2>
+        <p>En el portal del paciente, la sección «Mis dientes» muestra el mismo mapa con los estados de color, en modo de solo lectura. Solo el equipo de la clínica puede modificarlo. Si el navegador no ejecuta JavaScript, se muestra una tabla alternativa con la misma información.</p>
+
+        <h2>Qué no es</h2>
+        <p>El odontograma registra información; no interpreta ni recomienda tratamientos. Es una herramienta de gestión y no reemplaza el criterio del profesional. Si desea ver cómo se comporta, abra la demo, entre en una consulta y modifique algunas piezas: el historial se completa de inmediato. Para conocer el resto del sistema, lea el artículo sobre <a href="/es/articulos/software-odontologico-odoo/">software odontológico en Odoo 19</a>.</p>
+
+        <aside class="mt-12 rounded-2xl border border-brand-200 bg-brand-50 p-6 sm:p-8">
+            <h2 class="!mt-0 text-xl font-bold text-slate-900">Pruebe DentalOdoo sin registrarse</h2>
+            <p class="mt-2 text-slate-700">La demo en vivo es gratuita, no requiere registro, funciona en español o en inglés y le da un entorno privado de 120 minutos. Pruébela y cambie el estado de algunas piezas para ver el historial.</p>
+            <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                <a href="https://dental-demo.giulianoh.dev/demo" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-brand-600 !text-white !no-underline font-semibold hover:bg-brand-700 transition">Abrir la demo en vivo</a>
+                <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-white !text-brand-700 !no-underline font-semibold border border-brand-300 hover:bg-brand-50 transition">Ver en Odoo Apps Store</a>
+            </div>
+        </aside>
+    </article>
+</main>
+
+<footer class="bg-slate-900 text-slate-300 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+            <div>
+                <div class="flex items-center gap-3">
+                    <img src="/assets/icon.png" alt="Logotipo de DentalOdoo" class="w-9 h-9 rounded-lg">
+                    <span class="font-bold text-lg text-white">DentalOdoo</span>
+                </div>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">Software odontológico para Odoo 19. Creado por Giuliano Hillebrand.</p>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">Recursos</h4>
+                <ul class="mt-3 space-y-2 text-sm">
+                    <li><a href="/es/" class="hover:text-white transition">Inicio</a></li>
+                    <li><a href="/es/articulos/" class="hover:text-white transition">Artículos</a></li>
+                    <li><a href="mailto:dental@giulianoh.dev" class="hover:text-white transition">Soporte por correo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">Licencia</h4>
+                <p class="mt-3 text-sm text-slate-400">Licenciado bajo <strong class="text-slate-200">OPL-1</strong> (Odoo Proprietary License v1.0).</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <p>&copy; 2026 Giuliano Hillebrand &mdash; DentalOdoo. Todos los derechos reservados.</p>
+            <p>Odoo&reg; es una marca registrada de Odoo S.A. Este producto no está afiliado ni respaldado por Odoo S.A.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

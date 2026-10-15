@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software odontológico en Odoo 19: qué incluye DentalOdoo</title>
+    <meta name="description" content="Qué obtiene una clínica dental en Odoo 19: agenda, historia clínica, odontograma, planes de tratamiento, portal, reserva en línea y facturación.">
+    <meta name="author" content="Giuliano Hillebrand">
+    <meta name="theme-color" content="#0d7377">
+    <link rel="canonical" href="https://dental.giulianoh.dev/es/articulos/software-odontologico-odoo/">
+    <meta property="og:title" content="Software odontológico en Odoo 19: qué incluye DentalOdoo">
+    <meta property="og:description" content="Qué obtiene una clínica dental en Odoo 19: agenda, historia clínica, odontograma, planes de tratamiento, portal, reserva en línea y facturación.">
+    <meta property="og:image" content="https://dental.giulianoh.dev/assets/og-image.png">
+    <meta property="og:url" content="https://dental.giulianoh.dev/es/articulos/software-odontologico-odoo/">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Software odontológico en Odoo 19: qué incluye DentalOdoo">
+    <meta name="twitter:description" content="Qué obtiene una clínica dental en Odoo 19: agenda, historia clínica, odontograma, planes de tratamiento, portal, reserva en línea y facturación.">
+    <meta name="twitter:image" content="https://dental.giulianoh.dev/assets/og-image.png">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Software odontológico en Odoo 19: qué incluye DentalOdoo",
+  "description": "Qué obtiene una clínica dental en Odoo 19: agenda, historia clínica, odontograma, planes de tratamiento, portal, reserva en línea y facturación.",
+  "inLanguage": "es",
+  "datePublished": "2026-10-15",
+  "dateModified": "2026-10-15",
+  "mainEntityOfPage": "https://dental.giulianoh.dev/es/articulos/software-odontologico-odoo/",
+  "image": "https://dental.giulianoh.dev/assets/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://dental.giulianoh.dev/es/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Artículos",
+      "item": "https://dental.giulianoh.dev/es/articulos/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Software odontológico en Odoo 19: qué obtiene una clínica",
+      "item": "https://dental.giulianoh.dev/es/articulos/software-odontologico-odoo/"
+    }
+  ]
+}
+    </script>
+
+    <link rel="icon" type="image/png" href="/assets/icon.png">
+    <link rel="apple-touch-icon" href="/assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#eef9f9',
+                            100: '#d2eced',
+                            200: '#a6d8db',
+                            300: '#74bec3',
+                            400: '#3fa3aa',
+                            500: '#14919b',
+                            600: '#0d7377',
+                            700: '#0a5b5e',
+                            800: '#08484b',
+                            900: '#053638',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+        <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+        .art h2 { font-size: 1.5rem; line-height: 2rem; font-weight: 700; color: #0f172a; margin-top: 2.5rem; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+        .art p { margin-top: 1rem; line-height: 1.75; color: #334155; }
+        .art ul, .art ol { margin-top: 1rem; padding-left: 1.5rem; color: #334155; line-height: 1.75; }
+        .art ul { list-style: disc; } .art ol { list-style: decimal; }
+        .art li { margin-top: 0.35rem; }
+        .art a { color: #0d7377; text-decoration: underline; }
+        .art code { font-size: 0.875em; background: #f1f5f9; padding: 0 0.25rem; border-radius: 0.25rem; }
+        .art figure { margin-top: 2rem; }
+        .art figcaption { margin-top: 0.5rem; font-size: 0.875rem; color: #64748b; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="/es/" class="flex items-center gap-3">
+            <img src="/assets/icon.png" alt="Logotipo de DentalOdoo" class="w-9 h-9 rounded-lg shadow-sm">
+            <span class="font-bold text-lg text-slate-900">DentalOdoo</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+            <a href="/es/#features" class="hover:text-brand-600 transition">Funciones</a>
+            <a href="/es/#pricing" class="hover:text-brand-600 transition">Precios</a>
+            <a href="/es/articulos/" class="hover:text-brand-600 transition">Artículos</a>
+            <a href="https://dental-demo.giulianoh.dev/demo" target="_blank" rel="noopener" class="hover:text-brand-600 transition">Demo en vivo</a>
+            <a href="/es/#contact" class="hover:text-brand-600 transition">Contacto</a>
+        </nav>
+        <a href="/es/#pricing" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700 transition shadow-sm">Comenzar</a>
+    </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <nav aria-label="Ruta de navegación" class="text-sm text-slate-500"><a href="/es/" class="hover:text-brand-600">Inicio</a> <span aria-hidden="true">/</span> <a href="/es/articulos/" class="hover:text-brand-600">Artículos</a> <span aria-hidden="true">/</span> <span class="text-slate-700">Software odontológico en Odoo 19: qué obtiene una clínica</span></nav>
+    <article class="art">
+        <h1 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">Software odontológico en Odoo 19: qué obtiene una clínica</h1>
+
+        <p class="!text-lg">Muchas clínicas dentales ya trabajan con Odoo para contabilidad, compras o ventas y terminan usando una agenda y una historia clínica en programas separados. <strong>DentalOdoo</strong> es un módulo para Odoo 19 que lleva la gestión del consultorio a la misma base de datos: agenda, ficha del paciente, consulta, odontograma, planes de tratamiento, portal del paciente y facturación.</p>
+
+        <h2>Por qué gestionar la clínica dentro de Odoo</h2>
+        <p>Cuando la clínica ya usa Odoo, cada programa adicional implica duplicar pacientes, conciliar datos a mano y mantener otro sistema de usuarios. Con un módulo odontológico nativo, el paciente es un contacto de Odoo, la agenda usa el calendario de Odoo y las facturas son facturas de Odoo. El módulo está construido sobre las aplicaciones estándar (contactos, calendario, empleados, correo, portal y sitio web) y no reemplaza su contabilidad.</p>
+
+        <figure>
+            <img src="/assets/screenshot-1.png" alt="Consulta SOAP en DentalOdoo con alertas del paciente, notas clínicas y odontograma a la derecha; la interfaz de la captura está en inglés" loading="lazy" class="w-full h-auto rounded-xl border border-slate-200 shadow-md">
+            <figcaption>Una consulta con notas SOAP y el odontograma en la misma pantalla (la captura muestra la interfaz en inglés).</figcaption>
+        </figure>
+
+        <h2>Qué incluye el módulo clínico</h2>
+        <p>El módulo principal, <code>gh_dental_clinic</code>, cubre el trabajo diario de recepción y de los odontólogos:</p>
+        <ul>
+            <li><strong>Agenda y citas:</strong> ciclo completo de la cita (borrador, confirmada, en sala de espera, llamando, en consulta, finalizada, cancelada o ausente), calendario con varios odontólogos y reprogramación con motivo e historial.</li>
+            <li><strong>Pacientes y anamnesis:</strong> ficha de ingreso con preguntas médicas, alergias, enfermedades crónicas, medicación y antecedentes quirúrgicos; los avisos clínicos se muestran en la consulta.</li>
+            <li><strong>Consulta SOAP:</strong> notas Subjetivo, Objetivo, Evaluación y Plan, diagnósticos con códigos CIE-10, procedimientos del catálogo y firma. Una consulta firmada ya no se puede editar; las correcciones se hacen con adendas.</li>
+            <li><strong>Odontograma FDI:</strong> piezas permanentes y, si se activa la odontopediatría, piezas deciduas, con estados, condiciones por superficie e historial de cambios. Hay una guía detallada en el artículo sobre el <a href="/es/articulos/odontograma-odoo/">odontograma en Odoo</a>.</li>
+            <li><strong>Planes de tratamiento:</strong> líneas de procedimientos con pieza, superficie, precio y sesión, flujo de presentación y aprobación, y plantillas para tratamientos frecuentes.</li>
+            <li><strong>Recetas, consentimientos y estudios:</strong> recetas y consentimientos con numeración secuencial e informes PDF, registro de estudios radiológicos y seguimiento de implantes con hitos de oseointegración.</li>
+            <li><strong>Portal y reserva en línea:</strong> los pacientes pueden consultar sus citas y su ficha desde el portal y reservar por internet; recepción revisa las reservas web pendientes de confirmar.</li>
+            <li><strong>Sala de espera:</strong> cola del día para recepción y una pantalla pública, pensada para un televisor, que muestra el turno de los pacientes llamados.</li>
+            <li><strong>Recordatorios:</strong> correos de confirmación y recordatorio, y un sistema de controles periódicos. Los recordatorios por SMS son opcionales, están desactivados por defecto y usan el servicio SMS estándar de Odoo, que consume créditos IAP que se compran aparte.</li>
+        </ul>
+
+        <h2>Facturación con el módulo puente</h2>
+        <p>La facturación vive en un segundo módulo, <code>gh_dental_clinic_account</code>, que conecta los registros dentales con la aplicación Facturación de Odoo. Permite crear facturas en borrador desde citas, consultas y planes de tratamiento, con un asistente que muestra la base imponible, los impuestos y el total antes de confirmar. El módulo clínico funciona por sí solo: el puente es opcional. El detalle está en el artículo sobre cómo <a href="/es/articulos/facturar-consultas-odontologicas-odoo/">facturar consultas odontológicas en Odoo</a>.</p>
+
+        <h2>Seguridad por roles y multiempresa</h2>
+        <p>El acceso se organiza en dos privilegios independientes: Recepción (recepcionista y gerente de recepción) y Clínico (odontólogo y director clínico), además del portal del paciente. La recepción gestiona agenda y datos administrativos sin acceder al contenido clínico. Cada registro pertenece a una empresa, de modo que varias sedes pueden convivir en una misma instancia de Odoo con los datos aislados.</p>
+
+        <h2>A quién está dirigido</h2>
+        <p>DentalOdoo está pensado, sobre todo, para dos perfiles:</p>
+        <ul>
+            <li><strong>Clínicas que ya usan Odoo</strong> y quieren integrar agenda, historia clínica y facturación sin sumar otro sistema.</li>
+            <li><strong>Partners y consultores de Odoo</strong> que implementan Odoo para clínicas y necesitan un módulo odontológico listo para instalar, con documentación y soporte del autor.</li>
+        </ul>
+        <p>Es una herramienta de gestión administrativa y operativa. No ofrece asesoramiento médico ni apoyo a la decisión clínica: las decisiones siguen siendo responsabilidad de los profesionales.</p>
+
+        <h2>Cómo probarlo</h2>
+        <p>La forma más rápida es la <a href="https://dental-demo.giulianoh.dev/demo" target="_blank" rel="noopener">demo en vivo</a>: es gratuita, no pide registro, se puede usar en español o en inglés y entrega un entorno privado con datos de ejemplo durante 120 minutos. Recorra la agenda, abra una consulta, cambie el estado de una pieza en el odontograma y genere una factura desde un plan de tratamiento.</p>
+
+        <h2>Requisitos y precio</h2>
+        <p>Ambos módulos son para Odoo 19 y se compran en Odoo Apps Store con licencia OPL-1. <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic" target="_blank" rel="noopener">Dental Clinic</a> cuesta USD 349, pago único. <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic_account" target="_blank" rel="noopener">Dental Clinic - Invoicing</a> cuesta USD 448 en la tienda e incluye el módulo base; si ya tiene Dental Clinic, el complemento de facturación cuesta USD 99. El módulo puente requiere la aplicación Facturación de Odoo y, para emitir facturas, al menos un diario de ventas configurado.</p>
+
+        <aside class="mt-12 rounded-2xl border border-brand-200 bg-brand-50 p-6 sm:p-8">
+            <h2 class="!mt-0 text-xl font-bold text-slate-900">Pruebe DentalOdoo sin registrarse</h2>
+            <p class="mt-2 text-slate-700">La demo en vivo es gratuita, no requiere registro, funciona en español o en inglés y le da un entorno privado de 120 minutos. Elija el idioma al abrirla y recorra una clínica de ejemplo completa.</p>
+            <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                <a href="https://dental-demo.giulianoh.dev/demo" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-brand-600 !text-white !no-underline font-semibold hover:bg-brand-700 transition">Abrir la demo en vivo</a>
+                <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-white !text-brand-700 !no-underline font-semibold border border-brand-300 hover:bg-brand-50 transition">Ver en Odoo Apps Store</a>
+            </div>
+        </aside>
+    </article>
+</main>
+
+<footer class="bg-slate-900 text-slate-300 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+            <div>
+                <div class="flex items-center gap-3">
+                    <img src="/assets/icon.png" alt="Logotipo de DentalOdoo" class="w-9 h-9 rounded-lg">
+                    <span class="font-bold text-lg text-white">DentalOdoo</span>
+                </div>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">Software odontológico para Odoo 19. Creado por Giuliano Hillebrand.</p>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">Recursos</h4>
+                <ul class="mt-3 space-y-2 text-sm">
+                    <li><a href="/es/" class="hover:text-white transition">Inicio</a></li>
+                    <li><a href="/es/articulos/" class="hover:text-white transition">Artículos</a></li>
+                    <li><a href="mailto:dental@giulianoh.dev" class="hover:text-white transition">Soporte por correo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">Licencia</h4>
+                <p class="mt-3 text-sm text-slate-400">Licenciado bajo <strong class="text-slate-200">OPL-1</strong> (Odoo Proprietary License v1.0).</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <p>&copy; 2026 Giuliano Hillebrand &mdash; DentalOdoo. Todos los derechos reservados.</p>
+            <p>Odoo&reg; es una marca registrada de Odoo S.A. Este producto no está afiliado ni respaldado por Odoo S.A.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

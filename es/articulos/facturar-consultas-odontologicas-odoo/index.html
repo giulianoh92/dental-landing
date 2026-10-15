@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturar consultas odontológicas en Odoo 19: guía práctica</title>
+    <meta name="description" content="Cómo facturar consultas y planes de tratamiento dentales en Odoo 19 con Dental Clinic - Invoicing: permisos, asistente, impuestos y estado.">
+    <meta name="author" content="Giuliano Hillebrand">
+    <meta name="theme-color" content="#0d7377">
+    <link rel="canonical" href="https://dental.giulianoh.dev/es/articulos/facturar-consultas-odontologicas-odoo/">
+    <meta property="og:title" content="Facturar consultas odontológicas en Odoo 19: guía práctica">
+    <meta property="og:description" content="Cómo facturar consultas y planes de tratamiento dentales en Odoo 19 con Dental Clinic - Invoicing: permisos, asistente, impuestos y estado.">
+    <meta property="og:image" content="https://dental.giulianoh.dev/assets/og-image.png">
+    <meta property="og:url" content="https://dental.giulianoh.dev/es/articulos/facturar-consultas-odontologicas-odoo/">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Facturar consultas odontológicas en Odoo 19: guía práctica">
+    <meta name="twitter:description" content="Cómo facturar consultas y planes de tratamiento dentales en Odoo 19 con Dental Clinic - Invoicing: permisos, asistente, impuestos y estado.">
+    <meta name="twitter:image" content="https://dental.giulianoh.dev/assets/og-image.png">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Facturar consultas odontológicas en Odoo 19: guía práctica",
+  "description": "Cómo facturar consultas y planes de tratamiento dentales en Odoo 19 con Dental Clinic - Invoicing: permisos, asistente, impuestos y estado.",
+  "inLanguage": "es",
+  "datePublished": "2026-10-15",
+  "dateModified": "2026-10-15",
+  "mainEntityOfPage": "https://dental.giulianoh.dev/es/articulos/facturar-consultas-odontologicas-odoo/",
+  "image": "https://dental.giulianoh.dev/assets/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://dental.giulianoh.dev/es/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Artículos",
+      "item": "https://dental.giulianoh.dev/es/articulos/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Facturar consultas odontológicas en Odoo 19",
+      "item": "https://dental.giulianoh.dev/es/articulos/facturar-consultas-odontologicas-odoo/"
+    }
+  ]
+}
+    </script>
+
+    <link rel="icon" type="image/png" href="/assets/icon.png">
+    <link rel="apple-touch-icon" href="/assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#eef9f9',
+                            100: '#d2eced',
+                            200: '#a6d8db',
+                            300: '#74bec3',
+                            400: '#3fa3aa',
+                            500: '#14919b',
+                            600: '#0d7377',
+                            700: '#0a5b5e',
+                            800: '#08484b',
+                            900: '#053638',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+        <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+        .art h2 { font-size: 1.5rem; line-height: 2rem; font-weight: 700; color: #0f172a; margin-top: 2.5rem; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+        .art p { margin-top: 1rem; line-height: 1.75; color: #334155; }
+        .art ul, .art ol { margin-top: 1rem; padding-left: 1.5rem; color: #334155; line-height: 1.75; }
+        .art ul { list-style: disc; } .art ol { list-style: decimal; }
+        .art li { margin-top: 0.35rem; }
+        .art a { color: #0d7377; text-decoration: underline; }
+        .art code { font-size: 0.875em; background: #f1f5f9; padding: 0 0.25rem; border-radius: 0.25rem; }
+        .art figure { margin-top: 2rem; }
+        .art figcaption { margin-top: 0.5rem; font-size: 0.875rem; color: #64748b; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="/es/" class="flex items-center gap-3">
+            <img src="/assets/icon.png" alt="Logotipo de DentalOdoo" class="w-9 h-9 rounded-lg shadow-sm">
+            <span class="font-bold text-lg text-slate-900">DentalOdoo</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+            <a href="/es/#features" class="hover:text-brand-600 transition">Funciones</a>
+            <a href="/es/#pricing" class="hover:text-brand-600 transition">Precios</a>
+            <a href="/es/articulos/" class="hover:text-brand-600 transition">Artículos</a>
+            <a href="https://dental-demo.giulianoh.dev/demo" target="_blank" rel="noopener" class="hover:text-brand-600 transition">Demo en vivo</a>
+            <a href="/es/#contact" class="hover:text-brand-600 transition">Contacto</a>
+        </nav>
+        <a href="/es/#pricing" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700 transition shadow-sm">Comenzar</a>
+    </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <nav aria-label="Ruta de navegación" class="text-sm text-slate-500"><a href="/es/" class="hover:text-brand-600">Inicio</a> <span aria-hidden="true">/</span> <a href="/es/articulos/" class="hover:text-brand-600">Artículos</a> <span aria-hidden="true">/</span> <span class="text-slate-700">Facturar consultas odontológicas en Odoo 19</span></nav>
+    <article class="art">
+        <h1 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">Facturar consultas odontológicas en Odoo 19</h1>
+
+        <p class="!text-lg">En una clínica, facturar es el paso que cierra el ciclo: la consulta se hizo, el plan avanzó y hay que cobrar lo realizado. El módulo <strong>Dental Clinic - Invoicing</strong> (<code>gh_dental_clinic_account</code>) conecta DentalOdoo con la aplicación Facturación de Odoo 19 para generar facturas de cliente en borrador a partir de citas, consultas y planes de tratamiento.</p>
+
+        <h2>Requisitos</h2>
+        <ul>
+            <li>El módulo clínico <code>gh_dental_clinic</code> instalado, en la versión 19.0.19.0.0 o posterior.</li>
+            <li>La aplicación Facturación (<code>account</code>) de Odoo 19.</li>
+            <li>Al menos un diario de tipo ventas en la empresa que va a facturar.</li>
+            <li>Opcional, pero recomendable: un producto de tipo servicio asociado a cada procedimiento del catálogo.</li>
+        </ul>
+        <p>El módulo puente es opcional. Si no se instala, todo el flujo clínico sigue funcionando.</p>
+
+        <h2>Quién puede facturar</h2>
+        <p>Los roles dentales, por sí solos, no otorgan derechos de facturación. Facturar requiere el grupo estándar de facturación de Odoo, que el administrador asigna a quien corresponda, por ejemplo a una recepcionista que además cobra. Esa persona puede facturar una consulta desde la cita finalizada sin acceder al contenido clínico: el asistente solo lee datos facturables (procedimiento, pieza y precio). De esta forma, el odontólogo que firma el registro no factura a menos que se le concedan ambos permisos.</p>
+
+        <figure>
+            <img src="/assets/13_invoice_wizard.png" alt="Asistente «Invoice Treatment Plan» con el paciente, el plan, el diario de ventas, dos procedimientos seleccionados con pieza, superficie, precio e impuestos, y los totales sin impuestos, impuestos y total; interfaz en inglés" loading="lazy" class="w-full h-auto rounded-xl border border-slate-200 shadow-md">
+            <figcaption>El asistente de facturación de un plan de tratamiento, con los importes antes de crear la factura (interfaz en inglés).</figcaption>
+        </figure>
+
+        <h2>Facturar una cita o una consulta</h2>
+        <p>Cuando la consulta de una cita está firmada, se puede facturar el honorario de la consulta y los procedimientos realizados. El honorario se define en cada tipo de cita, dentro de la configuración. La cita muestra su estado de facturación, «Por facturar» o «Facturada», y un botón con las facturas generadas. También es posible facturar desde el formulario de la propia consulta.</p>
+
+        <h2>Facturar un plan de tratamiento</h2>
+        <ol>
+            <li>Lleve el plan a un estado facturable: aprobado, en curso o completado.</li>
+            <li>Marque como completadas las líneas a medida que se realizan las visitas. Solo las líneas completadas y todavía no facturadas son elegibles.</li>
+            <li>Haga clic en «Create Invoice» en el encabezado del plan. Desde la ficha del paciente existe además «Invoice Treatment Plan», que muestra únicamente datos facturables.</li>
+            <li>El asistente preselecciona las líneas completadas sin facturar. Puede ajustar la selección línea por línea o filtrar por número de sesión para facturar solo ciertas visitas.</li>
+            <li>Revise la base imponible, los impuestos y el total, que se calculan igual que en la factura creada, y confirme.</li>
+        </ol>
+        <p>El resultado es una factura de cliente en borrador, con el paciente como cliente, el diario de ventas, la posición fiscal que corresponda y una línea por cada línea del plan, conservando el nombre del procedimiento, la pieza y la superficie. Luego se valida desde Facturación como cualquier otra factura.</p>
+
+        <h2>Impuestos y productos</h2>
+        <p>Cada procedimiento puede tener asociado un producto de servicio, del que se toman impuestos y cuenta de ingresos. Si un procedimiento no tiene producto, la línea de la factura se crea igualmente con su nombre y precio, pero sin impuestos y con la cuenta de ingresos por defecto del diario. Por eso conviene configurar productos en los procedimientos que más se facturan.</p>
+
+        <h2>Seguimiento del estado de facturación</h2>
+        <p>El plan de tratamiento muestra su estado de facturación: «Not Invoiced» (sin facturar), «Partially Invoiced» (parcialmente facturado) o «Fully Invoiced» (totalmente facturado), junto con el importe facturado y un saldo. Conviene entender el alcance: ese saldo es el total del plan menos lo ya incluido en facturas, es decir, lo que falta por facturar. No es el estado de cobro. El cobro de las facturas, los pagos y la conciliación se gestionan con la aplicación Facturación de Odoo, como en cualquier otra factura.</p>
+        <p>Hay botones en ambos sentidos: desde el plan se llega a sus facturas y desde la factura se vuelve al plan.</p>
+
+        <h2>Protecciones contra errores</h2>
+        <ul>
+            <li>Una línea ya facturada no se puede seleccionar de nuevo. Si se cancela la factura, la línea vuelve a estar disponible.</li>
+            <li>Si dos usuarios intentan facturar las mismas líneas a la vez, el sistema bloquea las líneas y pide reintentar en unos segundos, en lugar de generar facturas duplicadas.</li>
+            <li>Un plan con facturas no canceladas no se puede eliminar hasta que se cancelen o eliminen esas facturas.</li>
+            <li>Con varias empresas, el diario de ventas se resuelve en la empresa actual y la factura se crea en la empresa del registro.</li>
+        </ul>
+
+        <h2>Precio y siguiente paso</h2>
+        <p>Dental Clinic - Invoicing cuesta USD 448 en <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic_account" target="_blank" rel="noopener">Odoo Apps Store</a> e incluye el módulo base Dental Clinic (USD 349); como complemento, para quien ya tiene el módulo base, son USD 99. Para ver el asistente en funcionamiento, abra la demo, entre en un plan de tratamiento y use el botón de factura. Si desea el panorama completo del sistema, lea <a href="/es/articulos/software-odontologico-odoo/">software odontológico en Odoo 19</a>.</p>
+
+        <aside class="mt-12 rounded-2xl border border-brand-200 bg-brand-50 p-6 sm:p-8">
+            <h2 class="!mt-0 text-xl font-bold text-slate-900">Pruebe DentalOdoo sin registrarse</h2>
+            <p class="mt-2 text-slate-700">La demo en vivo es gratuita, no requiere registro, funciona en español o en inglés y le da un entorno privado de 120 minutos. Abra un plan de tratamiento de ejemplo y genere una factura en borrador.</p>
+            <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                <a href="https://dental-demo.giulianoh.dev/demo" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-brand-600 !text-white !no-underline font-semibold hover:bg-brand-700 transition">Abrir la demo en vivo</a>
+                <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-white !text-brand-700 !no-underline font-semibold border border-brand-300 hover:bg-brand-50 transition">Ver en Odoo Apps Store</a>
+            </div>
+        </aside>
+    </article>
+</main>
+
+<footer class="bg-slate-900 text-slate-300 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+            <div>
+                <div class="flex items-center gap-3">
+                    <img src="/assets/icon.png" alt="Logotipo de DentalOdoo" class="w-9 h-9 rounded-lg">
+                    <span class="font-bold text-lg text-white">DentalOdoo</span>
+                </div>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">Software odontológico para Odoo 19. Creado por Giuliano Hillebrand.</p>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">Recursos</h4>
+                <ul class="mt-3 space-y-2 text-sm">
+                    <li><a href="/es/" class="hover:text-white transition">Inicio</a></li>
+                    <li><a href="/es/articulos/" class="hover:text-white transition">Artículos</a></li>
+                    <li><a href="mailto:dental@giulianoh.dev" class="hover:text-white transition">Soporte por correo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">Licencia</h4>
+                <p class="mt-3 text-sm text-slate-400">Licenciado bajo <strong class="text-slate-200">OPL-1</strong> (Odoo Proprietary License v1.0).</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <p>&copy; 2026 Giuliano Hillebrand &mdash; DentalOdoo. Todos los derechos reservados.</p>
+            <p>Odoo&reg; es una marca registrada de Odoo S.A. Este producto no está afiliado ni respaldado por Odoo S.A.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
