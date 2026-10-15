@@ -15,6 +15,11 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://dental.giulianoh.dev"
 SKIP_DIRS = {".git", "node_modules", "scripts"}
 ARTICLE_PREFIX = "/es/articulos/"
+TRACK_SCRIPT = "/assets/track-v1.js"
+TRACKED_PREFIXES = (
+    "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic",
+    "https://dental-demo.giulianoh.dev/demo",
+)
 SM_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 
 
@@ -27,6 +32,8 @@ class Page(HTMLParser):
         self.alternates = {}
         self.jsonld = []
         self.links = []
+        self.tracked_links = []
+        self.script_srcs = []
         self._in_title = False
         self._in_jsonld = False
         self._buf = ""
@@ -45,6 +52,10 @@ class Page(HTMLParser):
                 self.alternates[a["hreflang"]] = a.get("href")
         elif tag == "script" and a.get("type") == "application/ld+json":
             self._in_jsonld, self._buf = True, ""
+        if tag == "a" and (a.get("href") or "").startswith(TRACKED_PREFIXES):
+            self.tracked_links.append(a["href"])
+        elif tag == "script" and a.get("src"):
+            self.script_srcs.append(a["src"])
         for key in ("href", "src"):
             if a.get(key) is not None and tag != "link" or (
                 tag == "link" and key == "href" and a.get(key) and
@@ -119,6 +130,9 @@ def main() -> int:
             fail(where, f"expected one canonical, found {len(pg.canonicals)}")
         elif pg.canonicals[0] != expected:
             fail(where, f"canonical {pg.canonicals[0]!r} != {expected!r}")
+
+        if pg.tracked_links and pg.script_srcs.count(TRACK_SCRIPT) != 1:
+            fail(where, f"has store/demo links but does not load {TRACK_SCRIPT} exactly once")
 
         for i, raw in enumerate(pg.jsonld):
             try:

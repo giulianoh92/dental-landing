@@ -26,6 +26,7 @@ landing/
 └── assets/
     ├── icon.png            # Logo (88x88, ~80 KB)
     ├── og-image.png        # OG share image (placeholder = icon)
+    ├── track-v1.js         # Click beacon (see Click tracking)
     └── *.png               # Screenshots used by the landings and the articles
 ```
 
@@ -38,6 +39,10 @@ python3 scripts/check_seo.py
 ```
 
 It verifies title, description, canonical, JSON-LD, hreflang reciprocity, local links and assets, `sitemap.xml` (must list exactly the pages in the repo) and `robots.txt`. When adding a page, add it to `sitemap.xml`.
+
+## Click tracking
+
+`assets/track-v1.js` (loaded with `defer` on every page, versioned because assets are cached immutable) sends an anonymous `navigator.sendBeacon` to `https://dental-demo.giulianoh.dev/track/click` when a store or demo link is clicked (target and page path only, no cookies or IDs); the demo server turns it into a Telegram alert. The check script requires the script on every page with such links. Changing the script means a new file name (`track-v2.js`) and updating `TRACK_SCRIPT` in `scripts/check_seo.py`.
 
 ## Local preview
 
