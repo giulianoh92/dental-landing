@@ -14,16 +14,30 @@ Static landing page for [`dental.giulianoh.dev`](https://dental.giulianoh.dev). 
 
 ```
 landing/
-├── index.html              # Main page
+├── index.html              # English landing (canonical /, hreflang en/x-default)
+├── es/
+│   ├── index.html          # Spanish landing (/es/)
+│   └── articulos/          # Spanish articles: index.html + <slug>/index.html
+├── robots.txt              # Allow all + sitemap reference
+├── sitemap.xml             # Every page, hreflang alternates for the two landings
 ├── _headers                # Cloudflare Pages security & cache headers
+├── scripts/check_seo.py    # SEO consistency check (stdlib only)
 ├── README.md               # This file
 └── assets/
     ├── icon.png            # Logo (88x88, ~80 KB)
     ├── og-image.png        # OG share image (placeholder = icon)
-    ├── screenshot-1.png    # Hero (consultation form)
-    ├── screenshot-2.png    # Odontogram
-    └── screenshot-3.png    # Appointment list
+    └── *.png               # Screenshots used by the landings and the articles
 ```
+
+## SEO check
+
+Run from the repository root before every push (no dependencies, exits 1 on any failure):
+
+```bash
+python3 scripts/check_seo.py
+```
+
+It verifies title, description, canonical, JSON-LD, hreflang reciprocity, local links and assets, `sitemap.xml` (must list exactly the pages in the repo) and `robots.txt`. When adding a page, add it to `sitemap.xml`.
 
 ## Local preview
 
