@@ -1,4 +1,4 @@
-# DentalOdoo Landing Page
+# Dental Clinic Landing Page
 
 Static landing page for [`dental.giulianoh.dev`](https://dental.giulianoh.dev). The Odoo Apps Store QA reviewer reaches this URL from the module manifest, so it must always be online and coherent with the product.
 
