@@ -22,6 +22,7 @@ TRACKED_PREFIXES = (
     "https://dental-demo.giulianoh.dev/demo",
 )
 REDIRECT_MARK = "data-lang-redirect"  # attribute of the redirect <script> on the English home
+PRIVACY = {"en": "/privacy/", "es": "/es/privacidad/"}
 SM_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 
 
@@ -36,6 +37,10 @@ class Page(HTMLParser):
         self.links = []
         self.tracked_links = []
         self.script_srcs = []
+        self.imgs = []
+        self.footer_hrefs = []
+        self.bare_hash_links = 0
+        self._in_footer = False
         self._in_title = False
         self._in_jsonld = False
         self._buf = ""
@@ -54,6 +59,15 @@ class Page(HTMLParser):
                 self.alternates[a["hreflang"]] = a.get("href")
         elif tag == "script" and a.get("type") == "application/ld+json":
             self._in_jsonld, self._buf = True, ""
+        if tag == "footer":
+            self._in_footer = True
+        if tag == "img":
+            self.imgs.append((a, self._in_footer))
+        if tag == "a":
+            if a.get("href") == "#":
+                self.bare_hash_links += 1
+            if self._in_footer and a.get("href"):
+                self.footer_hrefs.append(a["href"])
         if tag == "a" and (a.get("href") or "").startswith(TRACKED_PREFIXES):
             self.tracked_links.append(a["href"])
         elif tag == "script" and a.get("src"):
@@ -70,6 +84,8 @@ class Page(HTMLParser):
             self._buf += data
 
     def handle_endtag(self, tag):
+        if tag == "footer":
+            self._in_footer = False
         if tag == "title" and self._in_title:
             self.titles.append(self._buf.strip())
             self._in_title = False
@@ -142,6 +158,26 @@ def main() -> int:
             except ValueError as e:
                 fail(where, f"JSON-LD block {i + 1} does not parse: {e}")
 
+        if pg.bare_hash_links:
+            fail(where, f'{pg.bare_hash_links} link(s) with href="#"')
+        if re.search(r"Dental ?Odoo|Dental Clinic Odoo", f.read_text(encoding="utf-8")):
+            fail(where, "product name must be exactly 'Dental Clinic' (no Odoo fused into the name)")
+
+        for a, _ in pg.imgs:
+            if not (a.get("width") or "").isdigit() or not (a.get("height") or "").isdigit():
+                fail(where, f"<img src={a.get('src')!r}> lacks numeric width/height")
+        content = [a for a, _ in pg.imgs if "icon.png" not in (a.get("src") or "")]
+        if path in ("/", "/es/") and content:
+            hero = content[0]
+            if hero.get("fetchpriority") != "high" or hero.get("loading") == "lazy":
+                fail(where, "hero image must be eager with fetchpriority=\"high\"")
+            for a in content[1:]:
+                if a.get("loading") != "lazy" or a.get("decoding") != "async":
+                    fail(where, f"below-the-fold <img src={a.get('src')!r}> needs loading=\"lazy\" decoding=\"async\"")
+        privacy = PRIVACY["es" if path.startswith("/es/") else "en"]
+        if privacy not in pg.footer_hrefs:
+            fail(where, f"footer has no link to {privacy}")
+
         for tag, ref in pg.links:
             target = resolve_local(rel, ref)
             if target is None:
@@ -151,6 +187,17 @@ def main() -> int:
             if not target.is_file():
                 fail(where, f"<{tag}> reference {ref!r} does not resolve to a file")
 
+    # the retired name must not survive in any published file (sitemap, assets, headers, docs)
+    for f in sorted(ROOT.rglob("*")):
+        rel = f.relative_to(ROOT)
+        if not f.is_file() or f.suffix in (".png", ".html") or set(rel.parts) & SKIP_DIRS:
+            continue
+        try:
+            if re.search(r"Dental ?Odoo", f.read_text(encoding="utf-8")):
+                fail(str(rel), "retired product name 'DentalOdoo' still present")
+        except UnicodeDecodeError:
+            pass
+
     # hreflang reciprocity between the two landings
     en, es = parsed.get("/"), parsed.get("/es/")
     if en is None or es is None:
@@ -158,6 +205,16 @@ def main() -> int:
     else:
         want = {"en": SITE + "/", "es": SITE + "/es/", "x-default": SITE + "/"}
         for name, pg in (("/", en), ("/es/", es)):
+            if pg.alternates != want:
+                fail(name, f"hreflang set {pg.alternates} != {want}")
+
+    # privacy pages: reciprocal hreflang pair
+    pe, ps = parsed.get("/privacy/"), parsed.get("/es/privacidad/")
+    if pe is None or ps is None:
+        fail("privacy", "both /privacy/ and /es/privacidad/ must exist")
+    else:
+        want = {"en": SITE + "/privacy/", "es": SITE + "/es/privacidad/", "x-default": SITE + "/privacy/"}
+        for name, pg in (("/privacy/", pe), ("/es/privacidad/", ps)):
             if pg.alternates != want:
                 fail(name, f"hreflang set {pg.alternates} != {want}")
 
@@ -174,6 +231,28 @@ def main() -> int:
                 fail("sitemap.xml", f"missing page {u}")
             for u in sorted(locs - expected):
                 fail("sitemap.xml", f"lists unknown page {u}")
+            lastmod = {}
+            for url in tree.getroot().iter(SM_NS + "url"):
+                loc, lm = url.find(SM_NS + "loc"), url.find(SM_NS + "lastmod")
+                if loc is not None and lm is not None and lm.text:
+                    lastmod[loc.text.strip()] = lm.text.strip()
+            for p_, pg in parsed.items():
+                mods = []
+                for raw in pg.jsonld:
+                    try:
+                        d = json.loads(raw)
+                    except ValueError:
+                        continue
+                    if isinstance(d, dict) and d.get("dateModified"):
+                        mods.append(d["dateModified"])
+                lm = lastmod.get(SITE + p_)
+                if lm is None:
+                    fail("sitemap.xml", f"{p_} has no <lastmod>")
+                elif not re.fullmatch(r"\d{4}-\d{2}-\d{2}", lm):
+                    fail("sitemap.xml", f"{p_} lastmod {lm!r} is not YYYY-MM-DD")
+                for m in mods:
+                    if lm and lm < m[:10]:
+                        fail("sitemap.xml", f"{p_} lastmod {lm} is older than JSON-LD dateModified {m}")
         except ET.ParseError as e:
             fail("sitemap.xml", f"does not parse as XML: {e}")
 
