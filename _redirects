@@ -1,0 +1,14 @@
+# Permanent (301) redirects for URL variants that Cloudflare Pages otherwise answers
+# with a temporary 307. Each destination is the canonical URL listed in sitemap.xml.
+# Rules in this file are evaluated before Pages' own normalisation.
+/index.html /  301
+/es /es/  301
+/es/index.html /es/  301
+/es/articulos /es/articulos/  301
+/es/articulos/index.html /es/articulos/  301
+/articles /articles/  301
+/articles/index.html /articles/  301
+/privacy /privacy/  301
+/privacy/index.html /privacy/  301
+/es/privacidad /es/privacidad/  301
+/es/privacidad/index.html /es/privacidad/  301
