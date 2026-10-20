@@ -30,4 +30,18 @@
     <loc>https://dental.giulianoh.dev/es/articulos/facturar-consultas-odontologicas-odoo/</loc>
     <lastmod>2026-10-15</lastmod>
   </url>
+  <url>
+    <loc>https://dental.giulianoh.dev/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/privacy/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://dental.giulianoh.dev/es/privacidad/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/privacy/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
 </urlset>
