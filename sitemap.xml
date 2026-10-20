@@ -16,18 +16,58 @@
   </url>
   <url>
     <loc>https://dental.giulianoh.dev/es/articulos/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/"/>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://dental.giulianoh.dev/es/articulos/software-odontologico-odoo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/software-odontologico-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/"/>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://dental.giulianoh.dev/es/articulos/odontograma-odoo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/odontogram-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/odontograma-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/odontogram-odoo/"/>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://dental.giulianoh.dev/es/articulos/facturar-consultas-odontologicas-odoo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/invoice-dental-consultations-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/facturar-consultas-odontologicas-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/invoice-dental-consultations-odoo/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://dental.giulianoh.dev/articles/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/software-odontologico-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://dental.giulianoh.dev/articles/odontogram-odoo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/odontogram-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/odontograma-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/odontogram-odoo/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://dental.giulianoh.dev/articles/invoice-dental-consultations-odoo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/invoice-dental-consultations-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/facturar-consultas-odontologicas-odoo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/invoice-dental-consultations-odoo/"/>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>

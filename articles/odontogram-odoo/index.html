@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odontogram in Odoo 19: FDI Chart, Statuses, History</title>
+    <meta name="description" content="How the Dental Clinic odontogram works in Odoo 19: FDI numbering, 13 tooth statuses, surface conditions, change history, mixed dentition and portal.">
+    <meta name="author" content="Giuliano Hillebrand">
+    <meta name="theme-color" content="#0d7377">
+    <link rel="canonical" href="https://dental.giulianoh.dev/articles/odontogram-odoo/">
+    <link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/odontogram-odoo/">
+    <link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/odontograma-odoo/">
+    <link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/odontogram-odoo/">
+    <meta property="og:site_name" content="Dental Clinic">
+    <meta property="og:title" content="Odontogram in Odoo 19: FDI Chart, Statuses, History">
+    <meta property="og:description" content="How the Dental Clinic odontogram works in Odoo 19: FDI numbering, 13 tooth statuses, surface conditions, change history, mixed dentition and portal.">
+    <meta property="og:image" content="https://dental.giulianoh.dev/assets/screenshot-2.png">
+    <meta property="og:url" content="https://dental.giulianoh.dev/articles/odontogram-odoo/">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Odontogram in Odoo 19: FDI Chart, Statuses, History">
+    <meta name="twitter:description" content="How the Dental Clinic odontogram works in Odoo 19: FDI numbering, 13 tooth statuses, surface conditions, change history, mixed dentition and portal.">
+    <meta name="twitter:image" content="https://dental.giulianoh.dev/assets/screenshot-2.png">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odontogram in Odoo 19: FDI Chart, Statuses, History",
+  "description": "How the Dental Clinic odontogram works in Odoo 19: FDI numbering, 13 tooth statuses, surface conditions, change history, mixed dentition and portal.",
+  "inLanguage": "en",
+  "datePublished": "2026-10-20",
+  "dateModified": "2026-10-20",
+  "mainEntityOfPage": "https://dental.giulianoh.dev/articles/odontogram-odoo/",
+  "image": "https://dental.giulianoh.dev/assets/screenshot-2.png",
+  "author": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand",
+    "url": "https://github.com/giulianoh92"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand",
+    "url": "https://github.com/giulianoh92"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://dental.giulianoh.dev/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://dental.giulianoh.dev/articles/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Odontogram in Odoo 19: how it works in Dental Clinic",
+      "item": "https://dental.giulianoh.dev/articles/odontogram-odoo/"
+    }
+  ]
+}
+    </script>
+
+    <link rel="icon" type="image/png" href="/assets/icon.png">
+    <link rel="apple-touch-icon" href="/assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#eef9f9',
+                            100: '#d2eced',
+                            200: '#a6d8db',
+                            300: '#74bec3',
+                            400: '#3fa3aa',
+                            500: '#14919b',
+                            600: '#0d7377',
+                            700: '#0a5b5e',
+                            800: '#08484b',
+                            900: '#053638',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+        <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+        .art h2 { font-size: 1.5rem; line-height: 2rem; font-weight: 700; color: #0f172a; margin-top: 2.5rem; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+        .art p { margin-top: 1rem; line-height: 1.75; color: #334155; }
+        .art ul, .art ol { margin-top: 1rem; padding-left: 1.5rem; color: #334155; line-height: 1.75; }
+        .art ul { list-style: disc; } .art ol { list-style: decimal; }
+        .art li { margin-top: 0.35rem; }
+        .art a { color: #0d7377; text-decoration: underline; }
+        .art code { font-size: 0.875em; background: #f1f5f9; padding: 0 0.25rem; border-radius: 0.25rem; }
+        .art figure { margin-top: 2rem; }
+        .art figcaption { margin-top: 0.5rem; font-size: 0.875rem; color: #64748b; }
+    </style>
+    <script src="/assets/track-v1.js" defer></script>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <img src="/assets/icon.png" width="512" height="512" alt="Dental Clinic logo" class="w-9 h-9 rounded-lg shadow-sm">
+            <span class="font-bold text-lg text-slate-900">Dental Clinic</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+            <a href="/#features" class="hover:text-brand-600 transition">Features</a>
+            <a href="/#pricing" class="hover:text-brand-600 transition">Pricing</a>
+            <a href="/articles/" class="hover:text-brand-600 transition">Guides</a>
+            <a href="https://dental-demo.giulianoh.dev/demo?lang=en" target="_blank" rel="noopener" class="hover:text-brand-600 transition">Live demo</a>
+            <a href="/#contact" class="hover:text-brand-600 transition">Contact</a>
+        </nav>
+        <div class="flex items-center gap-3">
+            <span class="text-xs font-semibold text-slate-500" aria-label="Language"><span class="text-brand-700" aria-current="true">EN</span> | <a href="/es/articulos/odontograma-odoo/" hreflang="es" lang="es" onclick="try{localStorage.setItem('lang_choice','es')}catch(e){}" class="hover:text-brand-600 transition">ES</a></span>
+            <a href="/#pricing" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700 transition shadow-sm">Get Started</a>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <nav aria-label="Breadcrumb" class="text-sm text-slate-500"><a href="/" class="hover:text-brand-600">Home</a> <span aria-hidden="true">/</span> <a href="/articles/" class="hover:text-brand-600">Guides</a> <span aria-hidden="true">/</span> <span class="text-slate-700">Odontogram in Odoo 19: how it works in Dental Clinic</span></nav>
+    <article class="art">
+        <h1 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">Odontogram in Odoo 19: how it works in Dental Clinic</h1>
+
+        <p class="!text-lg">The odontogram is the dental map of a patient: which teeth are healthy, which have caries or restorations, and what is planned for each. In <strong>Dental Clinic</strong> for Odoo 19 it is an interactive OWL component, used inside the consultation and on the patient record. This guide describes what it does today.</p>
+
+        <figure>
+            <img src="/assets/screenshot-2.png" width="1538" height="1054" loading="lazy" decoding="async" alt="Interactive FDI odontogram in Dental Clinic with teeth coloured by status, selection mode on with two teeth selected, and the status legend" class="w-full h-auto rounded-xl border border-slate-200 shadow-md">
+            <figcaption>The odontogram in selection mode, with the status legend below.</figcaption>
+        </figure>
+
+        <h2>Where you find it</h2>
+        <p>The same component is available in two places in the Odoo backend: inside the consultation form, next to the SOAP notes, and on the patient record. That means a dentist can update a tooth while documenting the visit instead of switching screens, and the consultation is linked to the change in the history. Reception, who only need the schedule, never have to open it.</p>
+
+        <h2>FDI numbering</h2>
+        <p>Teeth use the two-digit FDI notation: the first digit is the quadrant and the second is the position from the central incisor backwards.</p>
+        <ul>
+            <li><strong>Permanent teeth (32):</strong> quadrants 1 to 4, teeth 11 to 18, 21 to 28, 31 to 38 and 41 to 48.</li>
+            <li><strong>Deciduous teeth (20):</strong> quadrants 5 to 8, teeth 51 to 55, 61 to 65, 71 to 75 and 81 to 85. They are available when pediatric dentistry is enabled in the clinic settings.</li>
+        </ul>
+
+        <h2>Thirteen tooth statuses</h2>
+        <p>Every tooth has one status, drawn in its own colour and explained in a collapsible legend: healthy, decayed, filled, missing, root canal, crown, implant, in treatment, not erupted, exfoliated, worn, fractured and prosthetic.</p>
+
+        <h2>Conditions per surface</h2>
+        <p>Beyond the status of the whole tooth, you can record a condition on each of its five surfaces: mesial, distal, buccal, lingual or palatal, and occlusal or incisal. There are seven conditions: healthy, caries, restoration, fracture, attrition, sealant and erosion. Each tooth can hold one condition per surface. This is useful for pinpointing where a lesion or a restoration is.</p>
+
+        <h2>Editing a tooth</h2>
+        <p>Click a tooth to open its popover and change the status. For several teeth at once, switch on selection mode. You can pick teeth one by one or use shortcuts: select all, all molars, premolars, incisors or canines, the upper or lower arch, or a single quadrant. Then apply one action to the whole selection: change the status, report a problem or add a procedure.</p>
+
+        <h2>Tooth records and notes</h2>
+        <p>Each tooth also has its own form with a free-text notes field, the list of its surface conditions and a button that opens its full history. This is where a clinician keeps context that does not fit a status, such as a note about a restoration to watch at the next check-up.</p>
+
+        <h2>Badges for open work</h2>
+        <p>Small badges next to a tooth summarise pending work: open problems, planned procedures and completed procedures. The legend explains each one, so the chart doubles as a quick view of what remains to be done.</p>
+
+        <h2>Change history</h2>
+        <p>Every status change is recorded in the tooth history: previous status, new status, date and time, the user who made the change and, when relevant, the consultation in which it happened. History entries are read-only, so the evolution of each tooth stays intact over time.</p>
+
+        <h2>Mixed dentition and pediatric transition</h2>
+        <p>With pediatric dentistry enabled, a patient can have adult, deciduous or mixed dentition, and the module supports the transition:</p>
+        <ul>
+            <li>Starting mixed dentition creates the permanent teeth as not erupted (first molars start as healthy) and links each deciduous tooth to its permanent successor.</li>
+            <li>Marking a deciduous tooth as exfoliated also activates its successor if it was not erupted.</li>
+            <li>Completing adult dentition marks the remaining deciduous teeth as exfoliated and moves not-erupted permanent teeth to healthy.</li>
+        </ul>
+
+        <h2>Patients see it too</h2>
+        <p>In the patient portal, the "My Teeth" page shows the same odontogram in read-only mode. When JavaScript is not available, a static table with the same information is shown instead.</p>
+
+        <h2>What it is not</h2>
+        <p>The odontogram records information. It does not interpret findings or recommend treatment, and it does not replace the dentist's judgement. To see how it behaves, open the live demo, enter a consultation and change a few teeth: the history fills in immediately. For the rest of the system, read the overview of the <a href="/articles/dental-clinic-module-odoo/">Odoo dental clinic module</a>, or see how completed procedures turn into <a href="/articles/invoice-dental-consultations-odoo/">invoices</a>.</p>
+
+        <aside class="mt-12 rounded-2xl border border-brand-200 bg-brand-50 p-6 sm:p-8">
+            <h2 class="!mt-0 text-xl font-bold text-slate-900">Try Dental Clinic without signing up</h2>
+            <p class="mt-2 text-slate-700">The live demo is free, needs no registration and gives you a private sandbox with sample data for 120 minutes. Change the status of a few teeth and watch the history update.</p>
+            <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                <a href="https://dental-demo.giulianoh.dev/demo?lang=en" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-brand-600 !text-white !no-underline font-semibold hover:bg-brand-700 transition">Open the live demo</a>
+                <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-white !text-brand-700 !no-underline font-semibold border border-brand-300 hover:bg-brand-50 transition">View on the Odoo Apps Store</a>
+            </div>
+        </aside>
+
+    </article>
+</main>
+
+<footer class="bg-slate-900 text-slate-300 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+            <div>
+                <div class="flex items-center gap-3">
+                    <img src="/assets/icon.png" width="512" height="512" loading="lazy" decoding="async" alt="Dental Clinic logo" class="w-9 h-9 rounded-lg">
+                    <span class="font-bold text-lg text-white">Dental Clinic</span>
+                </div>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">Dental practice management for Odoo 19. Built by Giuliano Hillebrand.</p>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">Resources</h4>
+                <ul class="mt-3 space-y-2 text-sm">
+                    <li><a href="/" class="hover:text-white transition">Home</a></li>
+                    <li><a href="/articles/" class="hover:text-white transition">Guides</a></li>
+                    <li><a href="mailto:dental@giulianoh.dev" class="hover:text-white transition">Email support</a></li>
+                    <li><a href="/privacy/" class="hover:text-white transition">Privacy policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">License</h4>
+                <p class="mt-3 text-sm text-slate-400">Licensed under <strong class="text-slate-200">OPL-1</strong> (Odoo Proprietary License v1.0).</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <p>&copy; 2026 Giuliano Hillebrand &mdash; Dental Clinic. All rights reserved.</p>
+            <p>Odoo&reg; is a trademark of Odoo S.A. This product is not affiliated with or endorsed by Odoo S.A.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5d7d3d687e824a3da201bd59f833e2c7"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

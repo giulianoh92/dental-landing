@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo Dental Clinic Module: Features and Scope</title>
+    <meta name="description" content="What the Dental Clinic module adds to Odoo 19: scheduling, SOAP charting, FDI odontogram, treatment plans, patient portal, waiting room and invoicing.">
+    <meta name="author" content="Giuliano Hillebrand">
+    <meta name="theme-color" content="#0d7377">
+    <link rel="canonical" href="https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/">
+    <link rel="alternate" hreflang="en" href="https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/">
+    <link rel="alternate" hreflang="es" href="https://dental.giulianoh.dev/es/articulos/software-odontologico-odoo/">
+    <link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/">
+    <meta property="og:site_name" content="Dental Clinic">
+    <meta property="og:title" content="Odoo Dental Clinic Module: Features and Scope">
+    <meta property="og:description" content="What the Dental Clinic module adds to Odoo 19: scheduling, SOAP charting, FDI odontogram, treatment plans, patient portal, waiting room and invoicing.">
+    <meta property="og:image" content="https://dental.giulianoh.dev/assets/screenshot-1.png">
+    <meta property="og:url" content="https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Odoo Dental Clinic Module: Features and Scope">
+    <meta name="twitter:description" content="What the Dental Clinic module adds to Odoo 19: scheduling, SOAP charting, FDI odontogram, treatment plans, patient portal, waiting room and invoicing.">
+    <meta name="twitter:image" content="https://dental.giulianoh.dev/assets/screenshot-1.png">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odoo Dental Clinic Module: Features and Scope",
+  "description": "What the Dental Clinic module adds to Odoo 19: scheduling, SOAP charting, FDI odontogram, treatment plans, patient portal, waiting room and invoicing.",
+  "inLanguage": "en",
+  "datePublished": "2026-10-20",
+  "dateModified": "2026-10-20",
+  "mainEntityOfPage": "https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/",
+  "image": "https://dental.giulianoh.dev/assets/screenshot-1.png",
+  "author": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand",
+    "url": "https://github.com/giulianoh92"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand",
+    "url": "https://github.com/giulianoh92"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://dental.giulianoh.dev/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://dental.giulianoh.dev/articles/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "A dental clinic module for Odoo 19: what it covers",
+      "item": "https://dental.giulianoh.dev/articles/dental-clinic-module-odoo/"
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is invoicing included in the Dental Clinic module?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Invoicing lives in a separate bridge module, Dental Clinic - Invoicing. The clinical module works on its own, and the bridge adds draft customer invoices from appointments, consultations and treatment plans."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the module send SMS reminders?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only if you turn them on. SMS reminders are optional and disabled by default. When enabled, they use Odoo's standard SMS service, which consumes In-App Purchase credits bought separately from Odoo. Email confirmations and reminders do not need that service."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it give clinical advice or diagnoses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It is a practice management tool. It records what the dentist enters and does not provide medical advice, diagnosis, treatment recommendations or clinical decision support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I try it before buying?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The live demo is free, needs no registration and gives you a private sandbox with sample data for 120 minutes, in English or Spanish."
+      }
+    }
+  ]
+}
+    </script>
+
+    <link rel="icon" type="image/png" href="/assets/icon.png">
+    <link rel="apple-touch-icon" href="/assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#eef9f9',
+                            100: '#d2eced',
+                            200: '#a6d8db',
+                            300: '#74bec3',
+                            400: '#3fa3aa',
+                            500: '#14919b',
+                            600: '#0d7377',
+                            700: '#0a5b5e',
+                            800: '#08484b',
+                            900: '#053638',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+        <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+        .art h2 { font-size: 1.5rem; line-height: 2rem; font-weight: 700; color: #0f172a; margin-top: 2.5rem; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+        .art p { margin-top: 1rem; line-height: 1.75; color: #334155; }
+        .art ul, .art ol { margin-top: 1rem; padding-left: 1.5rem; color: #334155; line-height: 1.75; }
+        .art ul { list-style: disc; } .art ol { list-style: decimal; }
+        .art li { margin-top: 0.35rem; }
+        .art a { color: #0d7377; text-decoration: underline; }
+        .art code { font-size: 0.875em; background: #f1f5f9; padding: 0 0.25rem; border-radius: 0.25rem; }
+        .art figure { margin-top: 2rem; }
+        .art figcaption { margin-top: 0.5rem; font-size: 0.875rem; color: #64748b; }
+    </style>
+    <script src="/assets/track-v1.js" defer></script>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+            <img src="/assets/icon.png" width="512" height="512" alt="Dental Clinic logo" class="w-9 h-9 rounded-lg shadow-sm">
+            <span class="font-bold text-lg text-slate-900">Dental Clinic</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+            <a href="/#features" class="hover:text-brand-600 transition">Features</a>
+            <a href="/#pricing" class="hover:text-brand-600 transition">Pricing</a>
+            <a href="/articles/" class="hover:text-brand-600 transition">Guides</a>
+            <a href="https://dental-demo.giulianoh.dev/demo?lang=en" target="_blank" rel="noopener" class="hover:text-brand-600 transition">Live demo</a>
+            <a href="/#contact" class="hover:text-brand-600 transition">Contact</a>
+        </nav>
+        <div class="flex items-center gap-3">
+            <span class="text-xs font-semibold text-slate-500" aria-label="Language"><span class="text-brand-700" aria-current="true">EN</span> | <a href="/es/articulos/software-odontologico-odoo/" hreflang="es" lang="es" onclick="try{localStorage.setItem('lang_choice','es')}catch(e){}" class="hover:text-brand-600 transition">ES</a></span>
+            <a href="/#pricing" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700 transition shadow-sm">Get Started</a>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <nav aria-label="Breadcrumb" class="text-sm text-slate-500"><a href="/" class="hover:text-brand-600">Home</a> <span aria-hidden="true">/</span> <a href="/articles/" class="hover:text-brand-600">Guides</a> <span aria-hidden="true">/</span> <span class="text-slate-700">A dental clinic module for Odoo 19: what it covers</span></nav>
+    <article class="art">
+        <h1 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">A dental clinic module for Odoo 19: what it covers</h1>
+
+        <p class="!text-lg">Many dental practices already run Odoo for accounting, sales or purchasing, and still keep their schedule and clinical charts in a separate dental program. <strong>Dental Clinic</strong> is a module for Odoo 19 that brings the practice itself into the same database: scheduling, patient records, SOAP consultations, an interactive odontogram, treatment plans, a patient portal and, with an optional second module, invoicing.</p>
+
+        <figure>
+            <img src="/assets/screenshot-1.png" width="2560" height="1320" loading="lazy" decoding="async" alt="SOAP consultation in Dental Clinic with patient alerts, clinical notes and the odontogram on the right side of the screen" class="w-full h-auto rounded-xl border border-slate-200 shadow-md">
+            <figcaption>A consultation with SOAP notes and the odontogram on the same screen.</figcaption>
+        </figure>
+
+        <h2>Why run the practice inside Odoo</h2>
+        <p>Every extra program means duplicated patients, manual reconciliation and one more user list to maintain. Dental Clinic is built on standard Odoo apps instead: a patient is an Odoo contact, appointments use the Odoo calendar, doctors are linked to Odoo employees, and messages go through the standard mail system. The module depends on Contacts, Calendar, Employees, Discuss (mail), Portal and Website, and it does not replace your accounting.</p>
+
+        <h2>What the clinical module includes</h2>
+        <p>The main module, <code>gh_dental_clinic</code>, covers daily work for reception and dentists:</p>
+        <ul>
+            <li><strong>Appointments:</strong> a full lifecycle (draft, confirmed, in waiting room, calling, in consultation, done, cancelled, no show), a multi-doctor calendar, and rescheduling with a recorded reason and history.</li>
+            <li><strong>Patient records:</strong> problem-oriented medical records with allergies, chronic conditions, medications and surgical history.</li>
+            <li><strong>SOAP consultations:</strong> Subjective, Objective, Assessment and Plan notes with ICD-10 diagnoses and a procedure catalog. A signed consultation is final; corrections are recorded as addenda with a mandatory reason.</li>
+            <li><strong>FDI odontogram:</strong> 32 adult and 20 deciduous teeth with statuses, surface conditions and a change history. See the <a href="/articles/odontogram-odoo/">odontogram guide</a>.</li>
+            <li><strong>Treatment plans:</strong> procedure lines, session tracking, an approval workflow and templates for frequent treatments.</li>
+            <li><strong>Prescriptions, consents and studies:</strong> sequentially numbered prescriptions with PDF reports, digital consent forms with signature capture, radiological studies linked to the record, and an implant registry with osseointegration follow-up.</li>
+            <li><strong>Dashboards:</strong> a doctor dashboard and a front-desk queue for the day.</li>
+        </ul>
+
+        <h2>Front desk and patient-facing features</h2>
+        <ul>
+            <li><strong>Patient portal:</strong> patients can book online, view appointments, sign consents and access their own records through the Odoo website.</li>
+            <li><strong>Waiting room display:</strong> a screen for a TV that shows the current queue and patient status.</li>
+            <li><strong>Recall system:</strong> follow-up reminders based on configurable intervals.</li>
+            <li><strong>Notifications:</strong> mail templates for confirmations, reminders and recall alerts, plus optional SMS reminders through Odoo's SMS service.</li>
+        </ul>
+
+        <h2>Roles and multi-company</h2>
+        <p>Access is split into two independent privileges: Front Office (receptionist, front office manager) and Clinical (clinician, clinical director), plus the patient portal. The front desk manages the schedule without seeing clinical content. Every record carries a company, so several locations can share one Odoo instance with isolated data.</p>
+
+        <h2>Invoicing is a separate module</h2>
+        <p><code>gh_dental_clinic_account</code>, named <strong>Dental Clinic - Invoicing</strong>, connects dental records to Odoo Invoicing. It is optional and the clinical workflow does not depend on it. The details are in the guide to <a href="/articles/invoice-dental-consultations-odoo/">dental billing in Odoo</a>.</p>
+
+        <h2>Who it is for</h2>
+        <ul>
+            <li><strong>Clinic owners already on Odoo</strong> who want scheduling, charts and billing without another system.</li>
+            <li><strong>Odoo partners and integrators</strong> implementing Odoo for dental practices who need a module they can install and configure instead of building one.</li>
+        </ul>
+        <p>It is not a clinical decision tool: dentists remain responsible for every clinical decision.</p>
+
+        <h2>Requirements and price</h2>
+        <p>Dental Clinic is built for Odoo 19 and licensed under OPL-1. <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic" target="_blank" rel="noopener">Dental Clinic</a> costs USD 349 on the Odoo Apps Store. <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic_account" target="_blank" rel="noopener">Dental Clinic - Invoicing</a> costs USD 448 and includes the base module.</p>
+
+        <h2>Frequently asked questions</h2>
+        <h3 class="mt-6 text-lg font-semibold text-slate-900">Is invoicing included in the Dental Clinic module?</h3>
+        <p>No. Invoicing lives in a separate bridge module, <strong>Dental Clinic - Invoicing</strong>. The clinical module works on its own, and the bridge adds draft customer invoices from appointments, consultations and treatment plans.</p>
+        <h3 class="mt-6 text-lg font-semibold text-slate-900">Does the module send SMS reminders?</h3>
+        <p>Only if you turn them on. SMS reminders are optional and disabled by default. When enabled, they use Odoo's standard SMS service, which consumes In-App Purchase credits bought separately from Odoo. Email confirmations and reminders do not need that service.</p>
+        <h3 class="mt-6 text-lg font-semibold text-slate-900">Does it give clinical advice or diagnoses?</h3>
+        <p>No. It is a practice management tool. It records what the dentist enters and does not provide medical advice, diagnosis, treatment recommendations or clinical decision support.</p>
+        <h3 class="mt-6 text-lg font-semibold text-slate-900">Can I try it before buying?</h3>
+        <p>Yes. The <a href="https://dental-demo.giulianoh.dev/demo?lang=en" target="_blank" rel="noopener">live demo</a> is free, needs no registration and gives you a private sandbox with sample data for 120 minutes, in English or Spanish.</p>
+
+
+        <aside class="mt-12 rounded-2xl border border-brand-200 bg-brand-50 p-6 sm:p-8">
+            <h2 class="!mt-0 text-xl font-bold text-slate-900">Try Dental Clinic without signing up</h2>
+            <p class="mt-2 text-slate-700">The live demo is free, needs no registration and gives you a private sandbox with sample data for 120 minutes. Open an appointment, sign a consultation and change a tooth.</p>
+            <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                <a href="https://dental-demo.giulianoh.dev/demo?lang=en" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-brand-600 !text-white !no-underline font-semibold hover:bg-brand-700 transition">Open the live demo</a>
+                <a href="https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic" target="_blank" rel="noopener" class="inline-flex justify-center px-5 py-3 rounded-lg bg-white !text-brand-700 !no-underline font-semibold border border-brand-300 hover:bg-brand-50 transition">View on the Odoo Apps Store</a>
+            </div>
+        </aside>
+
+    </article>
+</main>
+
+<footer class="bg-slate-900 text-slate-300 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+            <div>
+                <div class="flex items-center gap-3">
+                    <img src="/assets/icon.png" width="512" height="512" loading="lazy" decoding="async" alt="Dental Clinic logo" class="w-9 h-9 rounded-lg">
+                    <span class="font-bold text-lg text-white">Dental Clinic</span>
+                </div>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">Dental practice management for Odoo 19. Built by Giuliano Hillebrand.</p>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">Resources</h4>
+                <ul class="mt-3 space-y-2 text-sm">
+                    <li><a href="/" class="hover:text-white transition">Home</a></li>
+                    <li><a href="/articles/" class="hover:text-white transition">Guides</a></li>
+                    <li><a href="mailto:dental@giulianoh.dev" class="hover:text-white transition">Email support</a></li>
+                    <li><a href="/privacy/" class="hover:text-white transition">Privacy policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider">License</h4>
+                <p class="mt-3 text-sm text-slate-400">Licensed under <strong class="text-slate-200">OPL-1</strong> (Odoo Proprietary License v1.0).</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <p>&copy; 2026 Giuliano Hillebrand &mdash; Dental Clinic. All rights reserved.</p>
+            <p>Odoo&reg; is a trademark of Odoo S.A. This product is not affiliated with or endorsed by Odoo S.A.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5d7d3d687e824a3da201bd59f833e2c7"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

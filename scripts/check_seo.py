@@ -15,7 +15,22 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://dental.giulianoh.dev"
 SKIP_DIRS = {".git", "node_modules", "scripts"}
-ARTICLE_PREFIX = "/es/articulos/"
+ARTICLE_PREFIXES = ("/es/articulos/", "/articles/")
+EN_ARTICLES = (
+    "/articles/dental-clinic-module-odoo/",
+    "/articles/odontogram-odoo/",
+    "/articles/invoice-dental-consultations-odoo/",
+)
+# English page -> Spanish counterpart (hreflang pairs; x-default is the English URL)
+PAIRS = {
+    "/articles/": "/es/articulos/",
+    "/articles/dental-clinic-module-odoo/": "/es/articulos/software-odontologico-odoo/",
+    "/articles/odontogram-odoo/": "/es/articulos/odontograma-odoo/",
+    "/articles/invoice-dental-consultations-odoo/": "/es/articulos/facturar-consultas-odontologicas-odoo/",
+}
+AUTHOR = {"name": "Giuliano Hillebrand", "url": "https://github.com/giulianoh92"}
+STORE = "https://apps.odoo.com/apps/modules/19.0/"
+REQUIRED_REDIRECTS = {"/index.html", "/es", "/es/index.html", "/es/articulos", "/articles"}
 TRACK_SCRIPT = "/assets/track-v1.js"
 TRACKED_PREFIXES = (
     "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic",
@@ -125,6 +140,8 @@ def main() -> int:
         rel = f.relative_to(ROOT)
         if set(rel.parts) & SKIP_DIRS:
             continue
+        if rel.as_posix() == "404.html":
+            continue
         pages[page_url_path(rel)] = (rel, f)
 
     parsed = {}
@@ -136,11 +153,11 @@ def main() -> int:
 
         if len(pg.titles) != 1 or not pg.titles[0]:
             fail(where, f"expected exactly one non-empty <title>, found {len(pg.titles)}")
-        elif path.startswith(ARTICLE_PREFIX) and len(pg.titles[0]) > 60:
+        elif path.startswith(ARTICLE_PREFIXES) and len(pg.titles[0]) > 60:
             fail(where, f"title is {len(pg.titles[0])} chars (max 60)")
         if not pg.description:
             fail(where, "missing meta description")
-        elif path.startswith(ARTICLE_PREFIX) and len(pg.description) > 155:
+        elif path.startswith(ARTICLE_PREFIXES) and len(pg.description) > 155:
             fail(where, f"meta description is {len(pg.description)} chars (max 155)")
 
         expected = SITE + path
@@ -275,6 +292,125 @@ def main() -> int:
             tag = m.group(0)
             if f"lang_choice','{m.group(1)}'" not in tag.replace('"', "'").replace("\\'", "'"):
                 fail(str(rel), f"language switch to {m.group(1)} does not store lang_choice")
+
+    # hreflang pairs for the articles (EN <-> ES, x-default = English)
+    for en_path, es_path in PAIRS.items():
+        want = {"en": SITE + en_path, "es": SITE + es_path, "x-default": SITE + en_path}
+        for name in (en_path, es_path):
+            pg = parsed.get(name)
+            if pg is None:
+                fail(name, "page missing (hreflang pair)")
+            elif pg.alternates != want:
+                fail(name, f"hreflang set {pg.alternates} != {want}")
+
+    # English articles: self-contained set, cross-linked, linked from the English home and index
+    home = parsed.get("/")
+    for a_path in EN_ARTICLES + ("/articles/",):
+        pg = parsed.get(a_path)
+        if pg is None:
+            continue
+        hrefs = {h for t, h in pg.links if t == "a"}
+        if home is not None and a_path not in {h for t, h in home.links if t == "a"}:
+            fail("/", f"English home does not link to {a_path}")
+        if a_path in EN_ARTICLES:
+            for other in EN_ARTICLES:
+                if other != a_path and other not in hrefs:
+                    fail(a_path, f"does not link to related article {other}")
+            if not any(h.startswith("https://dental-demo.giulianoh.dev/demo?lang=en") for h in hrefs):
+                fail(a_path, "missing demo link with ?lang=en")
+            if not any(h.startswith(STORE + "gh_dental_clinic") for h in hrefs):
+                fail(a_path, "missing Apps Store link")
+            kinds = [json.loads(r).get("@type") for r in pg.jsonld if r.strip().startswith("{")]
+            if "Article" not in kinds:
+                fail(a_path, "missing Article JSON-LD")
+    if home is not None:
+        foot = {h for t, h in home.links if t == "a"}
+        if "/articles/" not in foot:
+            fail("/", "English home does not link to /articles/")
+
+    # structured data: author Person, two products with offers
+    def blocks(pg):
+        out = []
+        for raw in pg.jsonld:
+            try:
+                d = json.loads(raw)
+            except ValueError:
+                continue
+            out.extend(d if isinstance(d, list) else [d])
+        return out
+
+    def offers(node):
+        o = node.get("offers")
+        return o if isinstance(o, list) else ([o] if o else [])
+
+    for h_path in ("/", "/es/"):
+        pg = parsed.get(h_path)
+        if pg is None:
+            continue
+        apps = {b.get("name"): b for b in blocks(pg) if b.get("@type") == "SoftwareApplication"}
+        for name, price in (("Dental Clinic", "349"), ("Dental Clinic - Invoicing", "448")):
+            node = apps.get(name)
+            if node is None:
+                fail(h_path, f"no SoftwareApplication named {name!r} in JSON-LD")
+                continue
+            prices = {str(o.get("price", "")).split(".")[0] for o in offers(node) if o.get("priceCurrency") == "USD"}
+            if price not in prices:
+                fail(h_path, f"{name!r} lacks an Offer of {price} USD")
+            auth = node.get("author") or {}
+            if auth.get("@type") != "Person" or auth.get("name") != AUTHOR["name"] or auth.get("url") != AUTHOR["url"]:
+                fail(h_path, f"{name!r} author must be Person {AUTHOR}")
+        inv = apps.get("Dental Clinic - Invoicing")
+        if inv is not None and "Dental Clinic" not in json.dumps(inv.get("isRelatedTo", "")) + str(inv.get("requirements", "")):
+            fail(h_path, "invoicing product must reference Dental Clinic (isRelatedTo/requirements)")
+    for path, pg in parsed.items():
+        if path.startswith(ARTICLE_PREFIXES) and path not in ("/articles/", "/es/articulos/"):
+            arts = [b for b in blocks(pg) if b.get("@type") == "Article"]
+            if not arts:
+                fail(path, "missing Article JSON-LD")
+            for a in arts:
+                for role in ("author", "publisher"):
+                    r = a.get(role) or {}
+                    if r.get("@type") != "Person" or r.get("name") != AUTHOR["name"] or r.get("url") != AUTHOR["url"]:
+                        fail(path, f"Article {role} must be Person {AUTHOR}")
+
+    # 404 page and redirects
+    nf = ROOT / "404.html"
+    if not nf.is_file():
+        fail("404.html", "missing")
+    else:
+        pg = Page()
+        pg.feed(nf.read_text(encoding="utf-8"))
+        hrefs = {h for t, h in pg.links if t == "a"}
+        if len(pg.titles) != 1 or not pg.titles[0]:
+            fail("404.html", "needs exactly one <title>")
+        for want_href in ("/", "/es/"):
+            if want_href not in hrefs:
+                fail("404.html", f"must link to {want_href}")
+        for tag, ref in pg.links:
+            target = resolve_local(Path("404.html"), ref)
+            if target is not None:
+                target = target / "index.html" if target.is_dir() else target
+                if not target.is_file():
+                    fail("404.html", f"<{tag}> reference {ref!r} does not resolve to a file")
+    rd = ROOT / "_redirects"
+    if not rd.is_file():
+        fail("_redirects", "missing")
+    else:
+        seen = set()
+        for n, line in enumerate(rd.read_text(encoding="utf-8").splitlines(), 1):
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            parts = line.split()
+            if len(parts) != 3 or parts[2] != "301":
+                fail("_redirects", f"line {n} must be '<from> <to> 301': {line!r}")
+                continue
+            seen.add(parts[0])
+            dest = parts[1]
+            if dest not in parsed:
+                fail("_redirects", f"line {n} target {dest!r} is not a known page")
+        for src in sorted(REQUIRED_REDIRECTS - seen):
+            fail("_redirects", f"missing 301 rule for {src}")
 
     for line in failures:
         print("FAIL", line)
