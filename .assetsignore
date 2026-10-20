@@ -1,0 +1,7 @@
+# Repository files that must not be published as website assets.
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
+README.md
+scripts
