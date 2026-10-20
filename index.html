@@ -2,6 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script data-lang-redirect>
+    (function () {
+        var s = null;
+        try { s = localStorage.getItem('lang_choice'); } catch (e) {}
+        if (/[?&]lang=en(&|$)/.test(location.search)) {
+            try { localStorage.setItem('lang_choice', 'en'); } catch (e) {}
+            return;
+        }
+        var go = s === 'es';
+        if (!s) {
+            var l = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+            for (var i = 0; i < l.length; i++) {
+                var c = String(l[i]).toLowerCase();
+                if (c.indexOf('en') === 0) break;
+                if (c.indexOf('es') === 0) { go = true; break; }
+            }
+        }
+        if (go) location.replace('/es/' + location.search + location.hash);
+    })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DentalOdoo &mdash; Dental Practice Management for Odoo 19</title>
 
@@ -107,7 +127,7 @@
             <a href="#contact" class="hover:text-brand-600 transition">Contact</a>
         </nav>
         <div class="flex items-center gap-3 sm:order-last">
-        <span class="text-xs font-semibold text-slate-500" aria-label="Language"><span class="text-brand-700" aria-current="true">EN</span> | <a href="/es/" hreflang="es" lang="es" class="hover:text-brand-600 transition">ES</a></span>
+        <span class="text-xs font-semibold text-slate-500" aria-label="Language"><span class="text-brand-700" aria-current="true">EN</span> | <a href="/es/" hreflang="es" lang="es" onclick="try{localStorage.setItem('lang_choice','es')}catch(e){}" class="hover:text-brand-600 transition">ES</a></span>
         <a href="#pricing" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700 transition shadow-sm">
             Get Started
         </a>

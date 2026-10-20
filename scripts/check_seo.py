@@ -5,6 +5,7 @@ Run from the repository root:  python3 scripts/check_seo.py
 Exits 1 and prints every failure when any check does not pass.
 """
 import json
+import re
 import sys
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
@@ -20,6 +21,7 @@ TRACKED_PREFIXES = (
     "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic",
     "https://dental-demo.giulianoh.dev/demo",
 )
+REDIRECT_MARK = "data-lang-redirect"  # attribute of the redirect <script> on the English home
 SM_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 
 
@@ -181,6 +183,19 @@ def main() -> int:
         fail("robots.txt", "missing")
     elif f"Sitemap: {SITE}/sitemap.xml" not in rb.read_text(encoding="utf-8"):
         fail("robots.txt", "does not reference the sitemap")
+
+    # automatic language: the redirect script lives only on the English home
+    for path, (rel, f) in pages.items():
+        text = f.read_text(encoding="utf-8")
+        has_redirect = REDIRECT_MARK in text
+        if path == "/" and not has_redirect:
+            fail(str(rel), "English home is missing the Spanish-browser redirect script")
+        if path != "/" and has_redirect:
+            fail(str(rel), "only the English home may carry the language redirect")
+        for m in re.finditer(r'<a\b[^>]*\bhreflang="(en|es)"[^>]*>', text):
+            tag = m.group(0)
+            if f"lang_choice','{m.group(1)}'" not in tag.replace('"', "'").replace("\\'", "'"):
+                fail(str(rel), f"language switch to {m.group(1)} does not store lang_choice")
 
     for line in failures:
         print("FAIL", line)
