@@ -29,26 +29,69 @@
     <link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/">
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Dental Clinic",
-      "alternateName": ["Dental Clinic para Odoo 19", "gh_dental_clinic"],
-      "description": "Gesti\u00f3n de cl\u00ednicas dentales para Odoo 19: consultas SOAP, odontograma FDI interactivo, planes de tratamiento, portal del paciente, reserva en l\u00ednea, pantalla de sala de espera y facturaci\u00f3n.",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Odoo 19",
-      "url": "https://dental.giulianoh.dev/es/",
-      "image": "https://dental.giulianoh.dev/assets/og-image.png",
-      "inLanguage": "es",
-      "author": { "@type": "Person", "name": "Giuliano Hillebrand" },
-      "offers": {
-        "@type": "Offer",
-        "price": "349.00",
-        "priceCurrency": "USD",
-        "url": "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic",
-        "availability": "https://schema.org/InStock"
-      }
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://dental.giulianoh.dev/#dental-clinic",
+  "name": "Dental Clinic",
+  "alternateName": [
+    "Dental Clinic para Odoo 19",
+    "gh_dental_clinic"
+  ],
+  "description": "Gestión de clínicas dentales para Odoo 19: consultas SOAP, odontograma FDI interactivo, planes de tratamiento, portal del paciente, reserva en línea, pantalla de sala de espera y facturación.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Odoo 19",
+  "url": "https://dental.giulianoh.dev/es/",
+  "image": "https://dental.giulianoh.dev/assets/og-image.png",
+  "inLanguage": "es",
+  "author": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand",
+    "url": "https://github.com/giulianoh92"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "349.00",
+    "priceCurrency": "USD",
+    "url": "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic",
+    "availability": "https://schema.org/InStock"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://dental.giulianoh.dev/#dental-clinic-invoicing",
+  "name": "Dental Clinic - Invoicing",
+  "alternateName": "gh_dental_clinic_account",
+  "description": "Módulo puente que crea facturas de cliente en borrador en Odoo 19 a partir de las citas, consultas y planes de tratamiento de Dental Clinic.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Odoo 19",
+  "url": "https://dental.giulianoh.dev/es/",
+  "image": "https://dental.giulianoh.dev/assets/og-image.png",
+  "inLanguage": "es",
+  "author": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand",
+    "url": "https://github.com/giulianoh92"
+  },
+  "requirements": "Requiere Dental Clinic (gh_dental_clinic) y la aplicación Facturación de Odoo (account)",
+  "isRelatedTo": {
+    "@type": "SoftwareApplication",
+    "@id": "https://dental.giulianoh.dev/#dental-clinic",
+    "name": "Dental Clinic",
+    "url": "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "448.00",
+    "priceCurrency": "USD",
+    "url": "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic_account",
+    "availability": "https://schema.org/InStock",
+    "description": "Precio en Apps Store, incluye el módulo base Dental Clinic"
+  }
+}
     </script>
 
     <link rel="icon" type="image/png" href="/assets/icon.png">

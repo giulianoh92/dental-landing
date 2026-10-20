@@ -49,26 +49,69 @@
     <link rel="alternate" hreflang="x-default" href="https://dental.giulianoh.dev/">
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Dental Clinic",
-      "alternateName": ["Dental Clinic for Odoo 19", "gh_dental_clinic"],
-      "description": "Dental practice management for Odoo 19: SOAP consultations, interactive FDI odontogram, treatment plans, patient portal, online booking, waiting room display and invoicing.",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Odoo 19",
-      "url": "https://dental.giulianoh.dev/",
-      "image": "https://dental.giulianoh.dev/assets/og-image.png",
-      "inLanguage": "en",
-      "author": { "@type": "Person", "name": "Giuliano Hillebrand" },
-      "offers": {
-        "@type": "Offer",
-        "price": "349.00",
-        "priceCurrency": "USD",
-        "url": "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic",
-        "availability": "https://schema.org/InStock"
-      }
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://dental.giulianoh.dev/#dental-clinic",
+  "name": "Dental Clinic",
+  "alternateName": [
+    "Dental Clinic for Odoo 19",
+    "gh_dental_clinic"
+  ],
+  "description": "Dental practice management for Odoo 19: SOAP consultations, interactive FDI odontogram, treatment plans, patient portal, online booking, waiting room display and invoicing.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Odoo 19",
+  "url": "https://dental.giulianoh.dev/",
+  "image": "https://dental.giulianoh.dev/assets/og-image.png",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand",
+    "url": "https://github.com/giulianoh92"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "349.00",
+    "priceCurrency": "USD",
+    "url": "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic",
+    "availability": "https://schema.org/InStock"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://dental.giulianoh.dev/#dental-clinic-invoicing",
+  "name": "Dental Clinic - Invoicing",
+  "alternateName": "gh_dental_clinic_account",
+  "description": "Bridge module that creates draft customer invoices in Odoo 19 from Dental Clinic appointments, consultations and treatment plans.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Odoo 19",
+  "url": "https://dental.giulianoh.dev/",
+  "image": "https://dental.giulianoh.dev/assets/og-image.png",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Giuliano Hillebrand",
+    "url": "https://github.com/giulianoh92"
+  },
+  "requirements": "Requires Dental Clinic (gh_dental_clinic) and the Odoo Invoicing app (account)",
+  "isRelatedTo": {
+    "@type": "SoftwareApplication",
+    "@id": "https://dental.giulianoh.dev/#dental-clinic",
+    "name": "Dental Clinic",
+    "url": "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "448.00",
+    "priceCurrency": "USD",
+    "url": "https://apps.odoo.com/apps/modules/19.0/gh_dental_clinic_account",
+    "availability": "https://schema.org/InStock",
+    "description": "Apps Store price including the base Dental Clinic module"
+  }
+}
     </script>
 
     <link rel="icon" type="image/png" href="assets/icon.png">
