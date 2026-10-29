@@ -10,6 +10,18 @@
 
       gtag('config', 'AW-18544935028');
     </script>
+    <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a');
+      if (!a || typeof gtag !== 'function') return;
+      var h = a.href || '';
+      var label = null;
+      if (h.indexOf('apps.odoo.com') !== -1)                    label = 'PJhlCMa6t64dEPSA9YpF'; // Apps Store
+      else if (h.indexOf('dental-demo.giulianoh.dev') !== -1)   label = 'Wjl9CMy6t64dEPSA9YpF'; // Demo
+      else if (h.indexOf('mailto:') === 0 || h.indexOf('wa.me') !== -1) label = 'sj4sCMm6t64dEPSA9YpF'; // Contacto
+      if (label) gtag('event', 'conversion', { send_to: 'AW-18544935028/' + label });
+    });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odontogram in Odoo 19: FDI Chart, Statuses, History</title>
